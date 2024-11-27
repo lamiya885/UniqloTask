@@ -1,7 +1,11 @@
 ﻿using BP_215UniqloMVC.DataAccess;
 using BP_215UniqloMVC.ViewModels.Slider;
+using BP_215UniqloMVC.ViewModels.Common;
+using BP_215UniqloMVC.ViewModels.Product;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using BP_215UniqloMVC.Models;
+using BP_215UniqloMVC.ViewModels.Product;
 
 namespace BP_215UniqloMVC.Controllers
 {
@@ -9,7 +13,8 @@ namespace BP_215UniqloMVC.Controllers
     {
         public async Task<IActionResult> Index()
         {
-            var datas = await _context.Sliders.Where(x=>!x.IsDeleted).Select(x => new SliderItemVM
+            HomeVM vm = new();
+            vm.Sliders= await _context.Sliders.Where(x=>!x.IsDeleted).Select(x => new SliderItemVM
             {
                 ImageUrl = x.ImageUrl,
                 Link=x.Link,
@@ -17,7 +22,20 @@ namespace BP_215UniqloMVC.Controllers
                 Subtitle = x.Subtitle
             }).ToListAsync();
 
-            return   View();
+            
+
+
+           vm.Products = await _context.Products.Where(x => !x.IsDeleted).Select(x => new ProductItemVM
+			{
+				Discount = x.Discount,
+				Id = x.Id,
+				ImageUrl = x.CoverImage,
+				IsInStock = x.Quantity > 0,
+				Name = x.Name,
+				Price = x.SellPrice
+			}).ToListAsync();
+			
+            return  View(vm);
         }
         public IActionResult About()
         {

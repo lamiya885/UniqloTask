@@ -1,4 +1,5 @@
 ﻿using BP_215UniqloMVC.DataAccess;
+using BP_215UniqloMVC.Extentions;
 using BP_215UniqloMVC.Models;
 using BP_215UniqloMVC.ViewModels.Slider;
 using Microsoft.AspNetCore.Mvc;
@@ -45,7 +46,37 @@ namespace BP_215UniqloMVC.Areas.Admin.Controllers
             await _context.SaveChangesAsync();  
             return RedirectToAction(nameof(Index));
 
-       }
+        }
+        public async Task<IActionResult> Update( int id,SliderCreateVM vm)
+        {
+            if (vm.File.IsValidSize(300))
+                ModelState.AddModelError("File","size must be less than 300");
+            if (vm.File.IsValidType("image"))
+                ModelState.AddModelError("File","Type must be 'image' ");
+            if (!ModelState.IsValid) return View();
+
+            var entity = await _context.Sliders.FindAsync(id);
+            if(entity is null) return NotFound();
+            entity.ImageUrl = await vm.File!.UploadAsync(_env.WebRootPath, "imgs", "sliders");
+            entity.Title = vm.Title;
+            entity.Subtitle = vm.Subtitle;
+            entity.Link = vm.Link;
+           
+
+            return View();
+        }
+
+        public async Task<IActionResult> Delete(int Id)
+        {
+            if(await _context.Sliders.AnyAsync(x=>x.Id==Id))
+            {
+                 _context.Sliders.Remove(new Slider { Id = Id });
+            }
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
+
 
     }
 }

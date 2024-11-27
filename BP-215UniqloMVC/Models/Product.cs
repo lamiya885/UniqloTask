@@ -1,4 +1,5 @@
 ﻿using BP_215UniqloMVC.ViewModels.Product;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace BP_215UniqloMVC.Models
 {
@@ -19,7 +20,7 @@ namespace BP_215UniqloMVC.Models
 
         public static implicit operator Product(ProductCreateVM vm)
         {
-            return new Product
+           return new Product
             {
                 Name = vm.Name,
                 Description = vm.Description,
@@ -27,7 +28,7 @@ namespace BP_215UniqloMVC.Models
                 SellPrice = vm.SellPrice,
                 Quantity = vm.Quantity,
                 Discount = vm.Discount,
-                CategoryId = vm.CategoryId,
+                CategoryId = (int)vm.CategoryId,
             };
         }
     }
