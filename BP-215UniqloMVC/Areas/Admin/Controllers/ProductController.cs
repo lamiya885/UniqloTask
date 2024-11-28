@@ -13,7 +13,7 @@ namespace BP_215UniqloMVC.Areas.Admin.Controllers
 		public async Task<IActionResult> Index()
         {
             await _context.Products.Include(x=>x.Category).ToListAsync();
-            return View();
+            return View( await _context.Products.ToListAsync());
         }
         public async Task<IActionResult> Create()
         {
@@ -84,8 +84,37 @@ namespace BP_215UniqloMVC.Areas.Admin.Controllers
             }
             await _context.SaveChangesAsync();
 
-            return Redirect(nameof(Index));
+            return RedirectToAction(nameof(Index));
         }
+        [HttpPatch]
+        public async Task<IActionResult> Hide (int? Id)
+        {
+            if (!Id.HasValue) return BadRequest();
+            var data = await _context.Products.FindAsync(Id);
+            if (data is null) return View();
 
+            data.IsDeleted= true;
+             await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+
+
+        }
+        [HttpPatch]
+        public async Task<IActionResult> Show(int? Id )
+        {
+            if (!Id.HasValue) return BadRequest();
+
+            var data = await _context.Products.FindAsync(Id);
+
+            if (data is null) return View();
+
+
+            data.IsDeleted = false;
+
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+
+        }
+       
     }
 }

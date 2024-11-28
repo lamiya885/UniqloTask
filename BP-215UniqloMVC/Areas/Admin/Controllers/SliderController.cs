@@ -77,6 +77,34 @@ namespace BP_215UniqloMVC.Areas.Admin.Controllers
         }
 
 
+        public async Task<IActionResult> Hide(int? Id)
+        {
+            if (!Id.HasValue) return BadRequest();
+
+            var data = await _context.Sliders.FindAsync();
+
+            if (data is null) return View();
+            data.IsDeleted=true;
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+
+
+        }
+        public async Task<IActionResult> Show(int? Id)
+        {
+            if (!Id.HasValue) return BadRequest();
+
+            var data = await _context.Sliders.FindAsync();
+
+            if (data is null) return View();
+            data.IsDeleted = false;
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+
+
+        }
+
+
 
     }
 }
