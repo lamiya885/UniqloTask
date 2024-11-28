@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "pUTeSlF6Gkrm/qaqdIMsjKQ45jbVOLLmnpJ04/eIgS4=",
+  "Hash": "i6ydBtvhFWeTIeceOqZ/UOy6tf7f0jL+vtV+QPNQKh0=",
   "Source": "BP-215UniqloMVC",
   "BasePath": "_content/BP-215UniqloMVC",
   "Mode": "Default",
@@ -39573,6 +39573,44 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\style.css"
+    },
+    {
+      "Identity": "C:\\Users\\hp\\source\\repos\\BP-215UniqloMVC\\BP-215UniqloMVC\\wwwroot\\imgs\\products\\e54e2rxg.z5t.jpg",
+      "SourceId": "BP-215UniqloMVC",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\hp\\source\\repos\\BP-215UniqloMVC\\BP-215UniqloMVC\\wwwroot\\",
+      "BasePath": "_content/BP-215UniqloMVC",
+      "RelativePath": "imgs/products/e54e2rxg.z5t.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\imgs\\products\\e54e2rxg.z5t.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\hp\\source\\repos\\BP-215UniqloMVC\\BP-215UniqloMVC\\wwwroot\\imgs\\products\\uopgksaq.ggx.jpg",
+      "SourceId": "BP-215UniqloMVC",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\hp\\source\\repos\\BP-215UniqloMVC\\BP-215UniqloMVC\\wwwroot\\",
+      "BasePath": "_content/BP-215UniqloMVC",
+      "RelativePath": "imgs/products/uopgksaq.ggx.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\imgs\\products\\uopgksaq.ggx.jpg"
     }
   ]
 }

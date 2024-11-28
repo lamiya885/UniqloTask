@@ -20,11 +20,12 @@ namespace BP_215UniqloMVC.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(CategoryCreateVM vm)
         {
+            if (!ModelState.IsValid) return View();
             Category category = new Category();
             category.Name = vm.CategoryName;
             await _context.Categories.AddAsync(category);
-                await _context.SaveChangesAsync();
-            return View();
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
         public async Task<IActionResult> Update()
         {
@@ -47,8 +48,8 @@ namespace BP_215UniqloMVC.Areas.Admin.Controllers
         [HttpDelete]
         public async Task<IActionResult> Delete(int? Id)
         {
-
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid) return BadRequest();
+            if(await _context.Products.AnyAsync(x => x.Id == Id))
             {
                 _context.Categories.Remove(new Models.Category { Id = Id.Value });
                 await _context.SaveChangesAsync();

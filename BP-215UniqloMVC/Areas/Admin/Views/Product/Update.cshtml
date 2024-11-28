@@ -1,31 +1,27 @@
 ﻿@model ProductUpdateVM
-@{
-    Layout = "_Layout";
-
-}
 
 
 <div class="card shadow mb-4">
     <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">Update </h6>
-        <a asp-action="Index" asp-controller="Product" class="btn btn-outline-primary ml-auto">Retuern list</a>
+        <a asp-action="Index" asp-controller="Product" class="btn btn-outline-primary ml-auto">Return list</a>
 
     </div>
     <div class="card-body">
         <form method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label asp-for="Name"></label>
-                <input value="Name" asp-for="Name" class="form-control">
+                <input value="@Model.Name" asp-for="Name" class="form-control">
                 <span asp-validation-for="Name" class="text-small text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Description"></label>
-                <input  value="Description"  asp-for="Description" class="form-control">   
+                <input  value="@Model.Description"  asp-for="Description" class="form-control">   
                 <span asp-validation-for="Description" class="text-small text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="CoverFile"></label>
-                <input value="CoverFile" accept="image/*" asp-for="CoverFile" class="form-control">
+                <input value="@Model.CoverFile" accept="image/*" asp-for="CoverFile" class="form-control">
                 <span asp-validation-for="CoverFile" class="text-small text-danger"></span>
 
             </div>
@@ -34,29 +30,29 @@
             <div class="form-row">
                 <div class="form-group col">
                     <label asp-for="CostPrice"></label>
-                    <input value="CostPrice" asp-for="CostPrice" class="form-control">
+                    <input value="@Model.CostPrice" asp-for="CostPrice" class="form-control">
                     <span asp-validation-for="CostPrice" class="text-small text-danger"></span>
                 </div>
                 <div class="form-group col">
                     <label asp-for="SellPrice"></label>
-                    <input value="SellPrice" asp-for="SellPrice" class="form-control">
+                    <input value="@Model.SellPrice" asp-for="SellPrice" class="form-control">
                     <span asp-validation-for="SellPrice" class="text-small text-danger"></span>
                 </div>
                 <div class="form-group col">
                     <label asp-for="Quantity"></label>
-                    <input value="Quantity" asp-for="Quantity" class="form-control">
+                    <input value="@Model.Quantity" asp-for="Quantity" class="form-control">
                     <span asp-validation-for="Quantity" class="text-small text-danger"></span>
                 </div>
                 <div class="form-group col">
                     <label asp-for="CategoryId"></label>
-                    <input value="CategoryId" asp-for="CategoryId" class="form-control">
+                    <input value="@Model.CategoryId" asp-for="CategoryId" class="form-control">
                     <span asp-validation-for="CategoryId" class="text-small text-danger"></span>
                 </div>
 
             </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
         </form>
 
-        <button type="submit" class="btn btn-primary">Submit</button>
 
     </div>
 </div>

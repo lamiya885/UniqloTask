@@ -24,9 +24,9 @@ namespace BP_215UniqloMVC.Areas.Admin.Controllers
         {
             if (vm.CoverFile != null)
             {
-                if (vm.CoverFile.IsValidType("image"))
+                if (!vm.CoverFile.IsValidType("image"))
                     ModelState.AddModelError("CoverFile", "File type must be image");
-                if (vm.CoverFile.IsValidSize(300))
+                if (!vm.CoverFile.IsValidSize(300))
                     ModelState.AddModelError("CoverFile", "File type must be less than 300");
             }
             if(!ModelState.IsValid) return View();
@@ -48,9 +48,9 @@ namespace BP_215UniqloMVC.Areas.Admin.Controllers
         {
             if(vm.CoverFile!=null)
             {
-                if (vm.CoverFile.IsValidType("image"))
+                if (!vm.CoverFile.IsValidType("image"))
                     ModelState.AddModelError("CoverFile", "File type must be image ");
-                if (vm.CoverFile.IsValidSize(300))
+                if (!vm.CoverFile.IsValidSize(300))
                     ModelState.AddModelError("CoverFile","File type must be less than 300");
 
             }
@@ -75,7 +75,7 @@ namespace BP_215UniqloMVC.Areas.Admin.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        [HttpDelete]
+        
         public async Task<IActionResult> Delete (int Id)
         {
             if(await _context.Products.AnyAsync(x=>x.Id==Id))
@@ -86,7 +86,7 @@ namespace BP_215UniqloMVC.Areas.Admin.Controllers
 
             return RedirectToAction(nameof(Index));
         }
-        [HttpPatch]
+      
         public async Task<IActionResult> Hide (int? Id)
         {
             if (!Id.HasValue) return BadRequest();
@@ -99,7 +99,7 @@ namespace BP_215UniqloMVC.Areas.Admin.Controllers
 
 
         }
-        [HttpPatch]
+        
         public async Task<IActionResult> Show(int? Id )
         {
             if (!Id.HasValue) return BadRequest();
@@ -111,7 +111,11 @@ namespace BP_215UniqloMVC.Areas.Admin.Controllers
 
             data.IsDeleted = false;
 
+
+
             await _context.SaveChangesAsync();
+
+
             return RedirectToAction(nameof(Index));
 
         }

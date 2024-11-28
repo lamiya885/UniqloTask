@@ -8329,6 +8329,14 @@
       "PackagePath": "staticwebassets\\assets\\style.css"
     },
     {
+      "Id": "C:\\Users\\hp\\source\\repos\\BP-215UniqloMVC\\BP-215UniqloMVC\\wwwroot\\imgs\\products\\e54e2rxg.z5t.jpg",
+      "PackagePath": "staticwebassets\\imgs\\products\\e54e2rxg.z5t.jpg"
+    },
+    {
+      "Id": "C:\\Users\\hp\\source\\repos\\BP-215UniqloMVC\\BP-215UniqloMVC\\wwwroot\\imgs\\products\\uopgksaq.ggx.jpg",
+      "PackagePath": "staticwebassets\\imgs\\products\\uopgksaq.ggx.jpg"
+    },
+    {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.BP-215UniqloMVC.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
     },

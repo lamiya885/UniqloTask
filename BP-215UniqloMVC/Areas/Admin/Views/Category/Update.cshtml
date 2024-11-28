@@ -15,7 +15,7 @@
         <form method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label asp-for="CategoryName"></label>
-                <input value="CategoryName" asp-for="CategoryName" class="form-control">
+                <input value="@Model.CategoryName" asp-for="CategoryName" class="form-control">
                 <span asp-validation-for="CategoryName" class="text-small text-danger"></span>
             </div>
        

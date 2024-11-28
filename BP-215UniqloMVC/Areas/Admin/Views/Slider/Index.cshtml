@@ -34,7 +34,7 @@
                         <td>@item.Link</td>
                         <td><a class="btn btn-success" asp-action="Update" asp-controller="Slider" asp-route-id="@item.Id">Update</a></td>
                         <td><a class="btn btn-danger" asp-action="Delete" asp-controller="Slider" asp-route-id="@item.Id">Delete</a></td>
-                       @if(item.IsDeleted=false)
+                       @if(item.IsDeleted==false)
                         {
                             
                             <td><a class="btn btn-secondary" asp-action="Hide" asp-controller="Slider" asp-route-id="@item.Id">Hide</a></td>
