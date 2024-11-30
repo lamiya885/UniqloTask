@@ -32,15 +32,29 @@ namespace BP_215UniqloMVC.Areas.Admin.Controllers
             if(!ModelState.IsValid) return View();
 
             Product product = vm;
+
             product.CoverImage = await vm.CoverFile!.UploadAsync(_env.WebRootPath,"imgs","products");
            
+            ViewBag.Categories = await _context.Categories.Where(x => !x.IsDeleted).ToListAsync();
             await _context.Products.AddAsync(product);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-        public async Task<IActionResult> Update()
+        public async Task<IActionResult> Update(int? Id)
         {
-            return View();
+            if (!Id.HasValue) return BadRequest();
+            var data = await _context.Products.FindAsync(Id);
+            if (data is null) return NotFound();
+            ProductUpdateVM vm = new();
+            vm.Name = data.Name;
+            vm.Description = data.Description;
+            vm.CostPrice = data.CostPrice;
+            vm.SellPrice = data.SellPrice;
+            vm.Discount = data.Discount;
+            vm.Quantity = data.Quantity;
+            vm.CategoryId= data.CategoryId; 
+
+            return View(vm);
         }
 
         [HttpPost]
@@ -54,7 +68,7 @@ namespace BP_215UniqloMVC.Areas.Admin.Controllers
                     ModelState.AddModelError("CoverFile","File type must be less than 300");
 
             }
-            if (!ModelState.IsValid) return View();
+            if (!ModelState.IsValid) return NotFound();
 
              var entity = await _context.Products.FindAsync(Id);
             

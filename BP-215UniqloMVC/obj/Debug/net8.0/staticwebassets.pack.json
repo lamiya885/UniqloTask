@@ -8337,6 +8337,10 @@
       "PackagePath": "staticwebassets\\imgs\\products\\uopgksaq.ggx.jpg"
     },
     {
+      "Id": "C:\\Users\\hp\\source\\repos\\BP-215UniqloMVC\\BP-215UniqloMVC\\wwwroot\\imgs\\slider\\i3gbujxb.ddz.jpg",
+      "PackagePath": "staticwebassets\\imgs\\slider\\i3gbujxb.ddz.jpg"
+    },
+    {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.BP-215UniqloMVC.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
     },

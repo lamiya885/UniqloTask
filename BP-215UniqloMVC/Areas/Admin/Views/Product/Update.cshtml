@@ -43,9 +43,18 @@
                     <input value="@Model.Quantity" asp-for="Quantity" class="form-control">
                     <span asp-validation-for="Quantity" class="text-small text-danger"></span>
                 </div>
-                <div class="form-group col">
+                  <div class="form-group col">
                     <label asp-for="CategoryId"></label>
-                    <input value="@Model.CategoryId" asp-for="CategoryId" class="form-control">
+                    <input value="@Model.CategoryId" asp-for="CategoryId" class="form-conrol">
+                    <span asp-validation-for="CategoryId" class="text-small text danger"></span>
+
+                    <select asp-for="CategoryId" class="form-control">
+                    <option selected disabled>Select Category</option>
+                    @foreach(var item in ViewBag.Categories)
+                        {
+                            <option  value="@item.Id">@item.Name</option>
+                        }
+                    </select>
                     <span asp-validation-for="CategoryId" class="text-small text-danger"></span>
                 </div>
 

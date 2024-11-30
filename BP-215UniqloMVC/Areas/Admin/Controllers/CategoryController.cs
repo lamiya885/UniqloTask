@@ -27,9 +27,14 @@ namespace BP_215UniqloMVC.Areas.Admin.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-        public async Task<IActionResult> Update()
+        public async Task<IActionResult> Update(int? Id)
         {
-            return View();
+            if(!Id.HasValue) return BadRequest();
+            var data = await _context.Categories.FindAsync(Id);
+            if (data is null) return NotFound();
+            CategoryUpdateVM vm = new();
+            vm.CategoryName = data.Name;
+            return View(vm);
         }
        
         [HttpPost]

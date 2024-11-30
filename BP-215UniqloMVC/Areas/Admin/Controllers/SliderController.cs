@@ -22,7 +22,7 @@ namespace BP_215UniqloMVC.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Create( SliderCreateVM vm)
         {
-            if(vm.File.ContentType.StartsWith("image"))
+            if(!vm.File.ContentType.StartsWith("image"))
               ModelState.AddModelError("File","File type must be image");
             if (vm.File.Length > 600 * 1024)
               ModelState.AddModelError("File", "File type must be less than 600kb");
@@ -46,6 +46,19 @@ namespace BP_215UniqloMVC.Areas.Admin.Controllers
             await _context.SaveChangesAsync();  
             return RedirectToAction(nameof(Index));
 
+        }
+        public async Task<IActionResult> Update (int? Id)
+        {
+            if (Id.HasValue) return BadRequest();
+            var data = await _context.Sliders.FindAsync(Id);
+            if (data is null) return NotFound();
+            SliderUpdateVM vm = new();
+            vm.Title = data.Title;
+            vm.Subtitle = data.Subtitle;
+            vm.Link = data.Link;
+           
+            
+            return View(vm);
         }
         public async Task<IActionResult> Update( int id,SliderCreateVM vm)
         {
@@ -81,7 +94,7 @@ namespace BP_215UniqloMVC.Areas.Admin.Controllers
         {
             if (!Id.HasValue) return BadRequest();
 
-            var data = await _context.Sliders.FindAsync();
+            var data = await _context.Sliders.FindAsync(Id);
 
             if (data is null) return View();
             data.IsDeleted=true;
