@@ -34,6 +34,7 @@ namespace BP_215UniqloMVC.Areas.Admin.Controllers
             if (data is null) return NotFound();
             CategoryUpdateVM vm = new();
             vm.CategoryName = data.Name;
+            
             return View(vm);
         }
        
@@ -54,6 +55,8 @@ namespace BP_215UniqloMVC.Areas.Admin.Controllers
         public async Task<IActionResult> Delete(int? Id)
         {
             if (!ModelState.IsValid) return BadRequest();
+            if (!Id.HasValue) return NotFound();
+                    
             if(await _context.Products.AnyAsync(x => x.Id == Id))
             {
                 _context.Categories.Remove(new Models.Category { Id = Id.Value });
@@ -61,14 +64,12 @@ namespace BP_215UniqloMVC.Areas.Admin.Controllers
             }
             return RedirectToAction(nameof(Index));
         }
-
         [HttpPatch]
-
         public async Task<IActionResult> Show(int? Id)
         {
             if (!Id.HasValue) return BadRequest();
 
-            var data = await _context.Categories.FindAsync();
+            var data = await _context.Categories.FindAsync(Id);
 
             if (data is null) return View();
             data.IsDeleted = false;
@@ -82,10 +83,10 @@ namespace BP_215UniqloMVC.Areas.Admin.Controllers
         {
             if (!Id.HasValue) return BadRequest();
 
-            var data = await _context.Categories.FindAsync();
+            var data = await _context.Categories.FindAsync(Id);
 
             if (data is null) return View();
-            data.IsDeleted = false;
+            data.IsDeleted = true;
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
 

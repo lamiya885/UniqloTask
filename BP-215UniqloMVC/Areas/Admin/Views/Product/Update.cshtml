@@ -1,6 +1,5 @@
 ﻿@model ProductUpdateVM
 
-
 <div class="card shadow mb-4">
     <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">Update </h6>
@@ -11,59 +10,102 @@
         <form method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label asp-for="Name"></label>
-                <input value="@Model.Name" asp-for="Name" class="form-control">
+                <input asp-for="Name" class="form-control">
                 <span asp-validation-for="Name" class="text-small text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Description"></label>
-                <input  value="@Model.Description"  asp-for="Description" class="form-control">   
+                <textarea asp-for="Description" class="form-control"></textarea>
                 <span asp-validation-for="Description" class="text-small text-danger"></span>
             </div>
+            <div class="form-row">
+                <div class="form-group">
+                <div>
+                    <img width="80px" src="~/imgs/products/@Model.CoverFileUrl"/>
+                </div>
+
+                    <label asp-for="CoverFile"></label>
+                    <input accept="image/*" asp-for="CoverFile" class="form-control">
+                    <span asp-validation-for="CoverFile" class="text-small text-danger"></span>
+
+                </div>
+                <div class="form-group">
+                    <div class="d-flex gap-1">
+                        <span>Sekle el vursan silinecek!!!</span>
+                    @foreach(var item in Model.OtherFileUrls ?? [])
+                    {
+                       
+                            <img class="prod-imgs" width="80px" src="~/imgs/products/@item" />
+                      
+                        
+                    }
+                    </div>
+                    <label asp-for="OtherFiles"></label>
+                    <input accept="image/*" asp-for="OtherFiles" class="form-control">
+                    <span asp-validation-for="OtherFiles" class="text-small text-danger"></span>
+
+                </div>
+            </div>
+
+
             <div class="form-group">
-                <label asp-for="CoverFile"></label>
-                <input value="@Model.CoverFile" accept="image/*" asp-for="CoverFile" class="form-control">
-                <span asp-validation-for="CoverFile" class="text-small text-danger"></span>
+                <label asp-for="OtherFiles"></label>
+                <input accept="image/*" asp-for="OtherFiles" class="form-control">
+                <span asp-validation-for="OtherFiles" class="text-small text-danger"></span>
 
             </div>
-        </form>
-        <form>
+
             <div class="form-row">
                 <div class="form-group col">
                     <label asp-for="CostPrice"></label>
-                    <input value="@Model.CostPrice" asp-for="CostPrice" class="form-control">
+                    <input asp-for="CostPrice" class="form-control">
                     <span asp-validation-for="CostPrice" class="text-small text-danger"></span>
                 </div>
                 <div class="form-group col">
                     <label asp-for="SellPrice"></label>
-                    <input value="@Model.SellPrice" asp-for="SellPrice" class="form-control">
+                    <input asp-for="SellPrice" class="form-control">
                     <span asp-validation-for="SellPrice" class="text-small text-danger"></span>
                 </div>
                 <div class="form-group col">
                     <label asp-for="Quantity"></label>
-                    <input value="@Model.Quantity" asp-for="Quantity" class="form-control">
+                    <input asp-for="Quantity" class="form-control">
                     <span asp-validation-for="Quantity" class="text-small text-danger"></span>
                 </div>
-                  <div class="form-group col">
+                <div class="form-group col">
                     <label asp-for="CategoryId"></label>
-                    <input value="@Model.CategoryId" asp-for="CategoryId" class="form-conrol">
-                    <span asp-validation-for="CategoryId" class="text-small text danger"></span>
-
-                    <select asp-for="CategoryId" class="form-control">
-                    <option selected disabled>Select Category</option>
-                    @foreach(var item in ViewBag.Categories)
+                    <select asp-for="CategoryId" class="form-control" asp-items='new SelectList(ViewBag.Catagories,"Id","Name")'>
+                        <option selected disabled>Select Category</option>
+                        @*    @foreach(var item in ViewBag.Categories)
                         {
-                            <option  value="@item.Id">@item.Name</option>
-                        }
+                        <option  value="@item.Id">@item.Name</option>
+                        } *@
                     </select>
                     <span asp-validation-for="CategoryId" class="text-small text-danger"></span>
                 </div>
 
             </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
         </form>
 
 
     </div>
 </div>
+ 
+@section script{
+    <script>
+        $(".prod-imgs").click(function () {
+            let img=$(this);
+            let id=$(this).attr("item-id");
+            fetch('/Admin/Products/DeleteImage/'+ id)
+            .then(res => 
+                {
+                if (res) {
+                    img.remove();
+                }
+              });
+            
+        });
+    </script>
+}
 
 

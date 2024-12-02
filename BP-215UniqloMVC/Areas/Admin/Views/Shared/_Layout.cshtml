@@ -117,6 +117,7 @@
                 <!-- End of Topbar -->
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
+
         @RenderBody()
    </div>
                 <!-- /.container-fluid -->
@@ -174,7 +175,7 @@
 
     <!-- Custom scripts for all pages-->
     <script src="~/admin/js/sb-admin-2.min.js"></script>
-
+    @await RenderSectionAsync("script",false);
 </body>
 
 </html>

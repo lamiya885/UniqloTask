@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "/4uNR0XkXFKBNil7w+QDqz7DnRGB9CBbMFNLmxy6rho=",
+  "Hash": "tszMMQsqzerhZehb+J9EhsgVRcUY6+Gu76e8YaqEgoU=",
   "Source": "BP-215UniqloMVC",
   "BasePath": "_content/BP-215UniqloMVC",
   "Mode": "Default",
@@ -39573,6 +39573,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\style.css"
+    },
+    {
+      "Identity": "C:\\Users\\hp\\source\\repos\\BP-215UniqloMVC\\BP-215UniqloMVC\\wwwroot\\imgs\\products\\514p00pl.okr.jpg",
+      "SourceId": "BP-215UniqloMVC",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\hp\\source\\repos\\BP-215UniqloMVC\\BP-215UniqloMVC\\wwwroot\\",
+      "BasePath": "_content/BP-215UniqloMVC",
+      "RelativePath": "imgs/products/514p00pl.okr.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\imgs\\products\\514p00pl.okr.jpg"
     },
     {
       "Identity": "C:\\Users\\hp\\source\\repos\\BP-215UniqloMVC\\BP-215UniqloMVC\\wwwroot\\imgs\\products\\e54e2rxg.z5t.jpg",

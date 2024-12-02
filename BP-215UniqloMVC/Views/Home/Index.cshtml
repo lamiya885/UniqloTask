@@ -157,7 +157,16 @@
                                             </div>
                                             <div class="product__details">
                                                 <h2><a href="product-details.html">@item.Name</a></h2>
-                                                <span class="popular__pro__prize">$@item.Price</span>
+                                              if(@item.IsInStock)
+                                              {
+                                                  <del>$@item.Price</del>
+                                                <span class="popular__pro__prize">$@(item.Price-item.Price * item.Discount/100)</span>
+                                              }
+                                              else
+                                              {
+                                                <span class="popular__pro__prize">Stok yenilenecek </span>
+
+                                              }
                                             </div>
                                         </div>
                                     </div>

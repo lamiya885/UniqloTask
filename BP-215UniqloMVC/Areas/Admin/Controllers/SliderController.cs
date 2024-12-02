@@ -60,13 +60,15 @@ namespace BP_215UniqloMVC.Areas.Admin.Controllers
             
             return View(vm);
         }
-        public async Task<IActionResult> Update( int id,SliderCreateVM vm)
+        [HttpPost]
+        public async Task<IActionResult> Update( int? id,SliderCreateVM vm)
         {
+            if (id.HasValue) return BadRequest();
             if (vm.File.IsValidSize(300))
                 ModelState.AddModelError("File","size must be less than 300");
-            if (vm.File.IsValidType("image"))
+            if (!vm.File.IsValidType("image"))
                 ModelState.AddModelError("File","Type must be 'image' ");
-            if (!ModelState.IsValid) return View();
+            if (!ModelState.IsValid) return View(vm);
 
             var entity = await _context.Sliders.FindAsync(id);
             if(entity is null) return NotFound();
@@ -75,15 +77,17 @@ namespace BP_215UniqloMVC.Areas.Admin.Controllers
             entity.Subtitle = vm.Subtitle;
             entity.Link = vm.Link;
            
-
-            return View();
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
 
-        public async Task<IActionResult> Delete(int Id)
+        [HttpDelete]
+        public async Task<IActionResult> Delete(int? Id)
         {
+            if (!Id.HasValue) return BadRequest();
             if(await _context.Sliders.AnyAsync(x=>x.Id==Id))
             {
-                 _context.Sliders.Remove(new Slider { Id = Id });
+                 _context.Sliders.Remove(new Slider { Id = Id.Value });
             }
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
