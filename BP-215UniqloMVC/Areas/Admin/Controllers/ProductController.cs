@@ -73,6 +73,15 @@ namespace BP_215UniqloMVC.Areas.Admin.Controllers
                     Product=product
                 });
             }
+            Product products = new Product
+            {
+                CategoryId = (int)vm.CategoryId,
+                CostPrice = vm.CostPrice,   
+                SellPrice = vm.SellPrice,       
+                Description = vm.Description,
+                Discount = vm.Discount
+
+            };
             await _context.Products.AddRangeAsync([]);
             await _context.Products.AddAsync(product);
             await _context.SaveChangesAsync();
@@ -110,7 +119,7 @@ namespace BP_215UniqloMVC.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Update (int Id,ProductUpdateVM vm)
+        public async Task<IActionResult> Update (int? Id,ProductUpdateVM vm)
         {
             if(vm.CoverFile!=null)
             {
@@ -144,11 +153,12 @@ namespace BP_215UniqloMVC.Areas.Admin.Controllers
         }
 
         
-        public async Task<IActionResult> Delete (int Id)
+        public async Task<IActionResult> Delete (int? Id)
         {
+            if (Id is null) return BadRequest();
             if(await _context.Products.AnyAsync(x=>x.Id==Id))
             {
-                _context.Products.Remove(new Product { Id = Id });
+                _context.Products.Remove(new Product { Id = Id.Value });
             }
             await _context.SaveChangesAsync();
 
