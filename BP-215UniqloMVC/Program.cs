@@ -19,6 +19,7 @@ namespace BP_215UniqloMVC
             });
             builder.Services.AddIdentity<User, IdentityRole>(opt =>
             {
+                opt.Password.RequiredLength = 3;
                 opt.Password.RequireNonAlphanumeric = false;
                 opt.Password.RequireDigit = false;
                 opt.Password.RequireLowercase = false;

@@ -63,8 +63,8 @@ namespace BP_215UniqloMVC.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Update( int? id,SliderCreateVM vm)
         {
-            if (id.HasValue) return BadRequest();
-            if (vm.File.IsValidSize(300))
+            if (!id.HasValue) return BadRequest();
+            if (!vm.File.IsValidSize(300))
                 ModelState.AddModelError("File","size must be less than 300");
             if (!vm.File.IsValidType("image"))
                 ModelState.AddModelError("File","Type must be 'image' ");

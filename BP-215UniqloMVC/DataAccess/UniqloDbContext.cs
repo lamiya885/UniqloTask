@@ -23,9 +23,9 @@ namespace BP_215UniqloMVC.DataAccess
             base.OnModelCreating(modelBuilder);
         }
 
-        internal async Task SaveChangesAsync()
-        {
-            throw new NotImplementedException();
-        }
+        //internal async Task SaveChangesAsync()
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }

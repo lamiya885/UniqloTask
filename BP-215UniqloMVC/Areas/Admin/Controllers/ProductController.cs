@@ -21,9 +21,8 @@ namespace BP_215UniqloMVC.Areas.Admin.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> Create(ProductCreateVM vm)
+        public async Task<IActionResult> Create(ProductCreateVM? vm)
         {
-           
             if(vm.OtherFiles!=null && vm.OtherFiles.Any() )
             {
                 if(!vm.OtherFiles.All(x=>x.IsValidType("image")))
@@ -48,12 +47,12 @@ namespace BP_215UniqloMVC.Areas.Admin.Controllers
             }
             if (!ModelState.IsValid)
             {
-                string NewFileName = Path.GetRandomFileName() + Path.GetExtension(vm.CoverFile.FileName);
                 ViewBag.Categories = await _context.Categories.Where(x => !x.IsDeleted).ToListAsync();
                 return View();
             }
+                string NewFileName = Path.GetRandomFileName() + Path.GetExtension(vm.CoverFile.FileName);
 
-            using (Stream stream=System.IO.File.Create(Path.Combine(_env.WebRootPath,"imgs","products")))
+            using (Stream stream=System.IO.File.Create(Path.Combine(_env.WebRootPath,"imgs", "products" ,NewFileName )))
             {
                 await vm.CoverFile.CopyToAsync(stream);
             }
@@ -115,7 +114,7 @@ namespace BP_215UniqloMVC.Areas.Admin.Controllers
 
             ViewBag.Categories= await _context.Categories.Where(x=>!x.IsDeleted).ToListAsync();
 
-            return View();
+            return View(product);
         }
 
         [HttpPost]

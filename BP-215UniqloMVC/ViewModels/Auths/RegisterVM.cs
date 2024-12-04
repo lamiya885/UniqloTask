@@ -2,7 +2,7 @@
 
 namespace BP_215UniqloMVC.ViewModels.Auths
 {
-    public class UserCreateVM
+    public class RegisterVM
     {
         [Required,MaxLength(64)]
         public string FullName { get; set; }
