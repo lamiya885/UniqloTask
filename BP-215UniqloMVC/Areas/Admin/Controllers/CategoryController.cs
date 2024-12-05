@@ -1,12 +1,15 @@
 ﻿using BP_215UniqloMVC.DataAccess;
 using BP_215UniqloMVC.Models;
 using BP_215UniqloMVC.ViewModels.Category;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace BP_215UniqloMVC.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize]
+
     public class CategoryController(UniqloDbContext _context) : Controller
     {
         public async Task<IActionResult> Index()

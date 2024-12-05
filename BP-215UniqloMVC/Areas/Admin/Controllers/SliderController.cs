@@ -2,12 +2,15 @@
 using BP_215UniqloMVC.Extentions;
 using BP_215UniqloMVC.Models;
 using BP_215UniqloMVC.ViewModels.Slider;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace BP_215UniqloMVC.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize]
+
     public class SliderController(UniqloDbContext _context, IWebHostEnvironment _env) : Controller
     {
         

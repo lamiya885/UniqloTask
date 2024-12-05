@@ -1,4 +1,4 @@
-﻿@model ProductUpdateVM
+﻿@model ProductUpdateVM  
 
 <div class="card shadow mb-4">
     <div class="card-header py-3">
@@ -35,7 +35,7 @@
                     @foreach(var item in Model.OtherFileUrls ?? [])
                     {
                        
-                            <img class="prod-imgs" width="80px" src="~/imgs/products/@item" />
+                            <img class="prod-imgs" width="80px"  src="~/imgs/products/@item" />
                       
                         
                     }
@@ -92,20 +92,43 @@
 </div>
  
 @section script{
+    <script  src="https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.all.min.js"></script>
     <script>
         $(".prod-imgs").click(function () {
             let img=$(this);
             let id=$(this).attr("item-id");
-            fetch('/Admin/Products/DeleteImage/'+ id)
-            .then(res => 
-                {
+            Swal.fire({
+                title:"Are you sure?",
+                text:"You wan't be able to revert this! ",
+                icon:"warning",
+                showCancelButton:true,
+                confirmButtonColor:"#3085d6",
+                confirmButtonText:"He ,sil",
+               canselButtonText:"Qalsin",
+
+            }).then((result) => {
+                if (result.isConfirmed) {
+                }
+            fetch('/Admin/Product/DeleteImage/'+ id)
+            .then(res => {
                 if (res) {
+                    Swal.fire(
+                        {
+                            title: "Deleted",
+                            text: "your file has been deleted.",
+                            icon: "success"
+
+                        });
                     img.remove();
                 }
               });
+            });
             
         });
     </script>
+}
+@section style{
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css" >
 }
 
 

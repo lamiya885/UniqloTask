@@ -12,8 +12,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
-    <meta name="author" content="">
-
+    <meta name=
     <title>SB Admin 2 - Register</title>
 
     <!-- Custom fonts for this template-->
@@ -26,7 +25,8 @@
 
 </head>
 
-<body class="bg-gradient-primary">
+<body class="bg-gradient-primary">"author" content="">
+
 
     <div class="container">
 
@@ -61,17 +61,15 @@
                                         <span class="text-danger" asp-validation-for="RePassword"></span>
                                     </div>
                                 </div>
-                                <div asp-validation-for="ModleOnly" class="text-danger"></div>
+                                <div asp-validation-for="ModelOnly" class="text-danger"></div>
                                 <button  class="btn btn-primary btn-user btn-block">
                                     Register Account
                                 </button>
                             </form>
                             <hr>
+                          
                             <div class="text-center">
-                                <a class="small" href="forgot-password.html">Forgot Password?</a>
-                            </div>
-                            <div class="text-center">
-                                <a class="small" href="login.html">Already have an account? Login!</a>
+                                <a class="small" asp-action="Login">Already have an account? Login!</a>
                             </div>
                         </div>
                     </div>

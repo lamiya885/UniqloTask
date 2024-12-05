@@ -2,12 +2,15 @@
 using BP_215UniqloMVC.Extentions;
 using BP_215UniqloMVC.Models;
 using BP_215UniqloMVC.ViewModels.Product;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace BP_215UniqloMVC.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize]
+
     public class ProductController(IWebHostEnvironment _env,UniqloDbContext _context) : Controller
     {
         public async Task<IActionResult> Index()
@@ -203,8 +206,10 @@ namespace BP_215UniqloMVC.Areas.Admin.Controllers
             var img = await _context.ProductImage.FindAsync(Id.Value);
             if (img == null) return NotFound();
             _context.ProductImage.Remove(img);
+           string path=Path.Combine(_env.WebRootPath,"imgs","products",img.FileUrl);
             await _context.SaveChangesAsync();
-
+            if(Path.Exists(path))
+                System.IO.File.Delete(path);
             return Ok();
         }
     }
