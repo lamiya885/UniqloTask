@@ -50,6 +50,11 @@ namespace BP_215UniqloMVC.Controllers
             return View();
         }
 
+        public async Task<IActionResult> AccessDenied()
+        {
+            return View();
+        }
+
 
     }
 }

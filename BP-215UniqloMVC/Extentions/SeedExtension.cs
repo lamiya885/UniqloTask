@@ -22,7 +22,7 @@ namespace BP_215UniqloMVC.Extentions
                     }
 
                 }
-                if(userManager.Users.Any(x=>x.NormalizedUserName=="ADMIN"))
+                if(!userManager.Users.Any(x=>x.NormalizedUserName=="ADMIN"))
                 {
                     User user = new User
                    { 

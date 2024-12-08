@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace BP_215UniqloMVC.Models
 {
-    public class Product : BaseEntity
+    public class Products : BaseEntity
     {
         public string Name { get; set; } = null!;
         public string Description { get; set; } = null!;
@@ -19,9 +19,9 @@ namespace BP_215UniqloMVC.Models
         public ICollection<ProductImage>? Images { get; set; }
 
 
-        public static implicit operator Product(ProductCreateVM vm)
+        public static implicit operator Products(ProductCreateVM vm)
         {
-           return new Product
+           return new Products
             {
                 Name = vm.Name,
                 Description = vm.Description,

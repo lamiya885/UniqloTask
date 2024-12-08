@@ -1,22 +1,25 @@
 ﻿using BP_215UniqloMVC.Enums;
 using BP_215UniqloMVC.Models;
 using BP_215UniqloMVC.ViewModels.Auths;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BP_215UniqloMVC.Controllers
 {
-    public class AccountController(UserManager<User> _userManager,SignInManager<User> signInManager) : Controller
+    public class AccountController(UserManager<User> _userManager,SignInManager<User> _signInManager) : Controller
     {
-        
+        bool isAuthenticated=> User.Identity?.IsAuthenticated ?? false;
         public IActionResult Register()
         {
+            if (isAuthenticated) return RedirectToAction("Index", "Home");
             return View();
         }
 
         [HttpPost]
         public async Task<IActionResult> Register(RegisterVM vm)
         {
+            if (isAuthenticated) return RedirectToAction("Index", "Home");
             if (!ModelState.IsValid) return View();
             User user = new User
             {
@@ -41,12 +44,14 @@ namespace BP_215UniqloMVC.Controllers
         }
         public async Task<IActionResult> Login()
         {
+            if(isAuthenticated) return RedirectToAction("Index","Home");
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login(LoginVM vm,string returnUrl)
+        public async Task<IActionResult> Login(LoginVM vm,string? returnUrl=null)
         {
+            if (isAuthenticated) return RedirectToAction("Index", "Home");
             if (ModelState.IsValid) return View(vm);
             User? user = null;
             if (vm.UsernameOrEmail.Contains('@'))
@@ -59,7 +64,7 @@ namespace BP_215UniqloMVC.Controllers
                 return View();
             }
 
-            var result = await signInManager.PasswordSignInAsync(user, vm.Password, vm.RememberMe, true);
+            var result = await _signInManager.PasswordSignInAsync(user, vm.Password, vm.RememberMe, true);
             if (result.Succeeded)
             {
                 if (result.IsNotAllowed)
@@ -70,10 +75,21 @@ namespace BP_215UniqloMVC.Controllers
             }
             if(string.IsNullOrEmpty(returnUrl))
             {
+                if (await _userManager.IsInRoleAsync(user, "Admin"))
+                {
+                    return RedirectToAction("Index", new {Contoller ="Dahboard",Area="Admin"});
+                }
+
                 return RedirectToAction("Index", "Home");
             }
 
             return LocalRedirect(returnUrl);
+        }
+        [Authorize]
+        public async Task<IActionResult> LogOut ()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction(nameof(Login));
         }
     }
 }

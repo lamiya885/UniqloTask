@@ -30,7 +30,11 @@ namespace BP_215UniqloMVC
                 opt.Lockout.MaxFailedAccessAttempts = 3;
                 opt.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(1);
             }).AddDefaultTokenProviders().AddEntityFrameworkStores<UniqloDbContext>();
-
+            builder.Services.ConfigureApplicationCookie(x =>
+            {
+                x.AccessDeniedPath = "/Home/AccessDenied";
+                x.LoginPath = "";
+            });
             var app = builder.Build();
 
             app.UseStaticFiles();

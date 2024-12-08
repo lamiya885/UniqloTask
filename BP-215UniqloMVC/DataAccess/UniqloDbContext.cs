@@ -10,7 +10,7 @@ namespace BP_215UniqloMVC.DataAccess
     {
         public DbSet<Slider> Sliders { get; set; }
         public DbSet<Category> Categories { get; set; }
-        public DbSet<Product> Products { get; set; }
+        public DbSet<Products> Products { get; set; }
         public  DbSet<ProductImage> ProductImage { get; set; }
 
         public UniqloDbContext(DbContextOptions opt):base(opt) { }

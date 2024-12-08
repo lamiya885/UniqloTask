@@ -1,5 +1,6 @@
 ﻿using BP_215UniqloMVC.DataAccess;
 using BP_215UniqloMVC.Extentions;
+using BP_215UniqloMVC.Helpers;
 using BP_215UniqloMVC.Models;
 using BP_215UniqloMVC.ViewModels.Product;
 using Microsoft.AspNetCore.Authorization;
@@ -9,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 namespace BP_215UniqloMVC.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize]
+    [Authorize(Roles =RoleConstants.Product)]
 
     public class ProductController(IWebHostEnvironment _env,UniqloDbContext _context) : Controller
     {
@@ -60,7 +61,7 @@ namespace BP_215UniqloMVC.Areas.Admin.Controllers
                 await vm.CoverFile.CopyToAsync(stream);
             }
 
-                Product product = vm;
+                Products product = vm;
 
             product.CoverImage = await vm.CoverFile!.UploadAsync(_env.WebRootPath,"imgs","products");
            
@@ -75,7 +76,7 @@ namespace BP_215UniqloMVC.Areas.Admin.Controllers
                     Product=product
                 });
             }
-            Product products = new Product
+            Products products = new Products
             {
                 CategoryId = (int)vm.CategoryId,
                 CostPrice = vm.CostPrice,   
@@ -160,7 +161,7 @@ namespace BP_215UniqloMVC.Areas.Admin.Controllers
             if (Id is null) return BadRequest();
             if(await _context.Products.AnyAsync(x=>x.Id==Id))
             {
-                _context.Products.Remove(new Product { Id = Id.Value });
+                _context.Products.Remove(new Products { Id = Id.Value });
             }
             await _context.SaveChangesAsync();
 
