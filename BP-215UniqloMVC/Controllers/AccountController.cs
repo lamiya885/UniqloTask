@@ -1,4 +1,5 @@
-﻿using BP_215UniqloMVC.Enums;
+﻿using System.Net.Mail;
+using BP_215UniqloMVC.Enums;
 using BP_215UniqloMVC.Models;
 using BP_215UniqloMVC.ViewModels.Auths;
 using Microsoft.AspNetCore.Authorization;
@@ -90,6 +91,13 @@ namespace BP_215UniqloMVC.Controllers
         {
             await _signInManager.SignOutAsync();
             return RedirectToAction(nameof(Login));
+        }
+
+        public async Task<IActionResult> Test ()
+        {
+            SmtpClient smtp = new();
+            smtp.Host = "smtp.gmail.com";
+            return View();
         }
     }
 }
