@@ -1,15 +1,19 @@
-﻿using System.Net.Mail;
+﻿using System.Net;
+using System.Net.Mail;
 using BP_215UniqloMVC.Enums;
+using BP_215UniqloMVC.Helpers;
 using BP_215UniqloMVC.Models;
 using BP_215UniqloMVC.ViewModels.Auths;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 
 namespace BP_215UniqloMVC.Controllers
 {
-    public class AccountController(UserManager<User> _userManager, SignInManager<User> _signInManager) : Controller
+    public class AccountController(UserManager<User> _userManager, SignInManager<User> _signInManager,IOptions<SmtpOptions> opts) : Controller
     {
+        readonly SmtpOptions _smtpOpt= opts.Value;
         bool isAuthenticated => User.Identity?.IsAuthenticated ?? false;
         public IActionResult Register()
         {
@@ -104,7 +108,7 @@ namespace BP_215UniqloMVC.Controllers
                 }
                 return RedirectToAction("Index", "Home");
             }
-
+          string token= await   _userManager.GenerateEmailConfirmationTokenAsync(user);
             return LocalRedirect(returnUrl);
         }
         [Authorize]
@@ -117,8 +121,19 @@ namespace BP_215UniqloMVC.Controllers
         public async Task<IActionResult> Test()
         {
             SmtpClient smtp = new();
-            smtp.Host = "smtp.gmail.com";
-            return View();
+            smtp.Host = _smtpOpt.Host;
+            smtp.Port = _smtpOpt.Port;
+            smtp.EnableSsl = true;
+            smtp.Credentials = new NetworkCredential(_smtpOpt.Username,_smtpOpt.Password);
+            MailAddress from = new MailAddress(_smtpOpt.Username,"Yaya support");
+            MailAddress to = new("lamiyahasanza@gmail.com");
+            MailMessage msg = new MailMessage(from, to);
+            msg.Subject = "Security alert!";
+            msg.Body = "<p>Change your password immediatly! From this <a>link</a></p>";
+            msg.IsBodyHtml = true;
+
+            smtp.Send(msg);
+            return Ok("Alindi");
         }
     }
 }

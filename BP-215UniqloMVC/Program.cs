@@ -1,5 +1,6 @@
 using BP_215UniqloMVC.DataAccess;
 using BP_215UniqloMVC.Extentions;
+using BP_215UniqloMVC.Helpers;
 using BP_215UniqloMVC.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -34,6 +35,10 @@ namespace BP_215UniqloMVC
                 x.AccessDeniedPath = "/Home/AccessDenied";
                 x.LoginPath = "";
             });
+
+            SmtpOptions opt = new SmtpOptions();
+            builder.Services.Configure<SmtpOptions>(builder.Configuration.GetSection("Smtp"));
+
             var app = builder.Build();
 
             app.UseStaticFiles();
