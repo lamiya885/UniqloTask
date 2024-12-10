@@ -1,10 +1,10 @@
-﻿@model Product
+﻿@model Products
 @{
     ViewData["Title"] = Model.Name;
     var rating = Model.Ratings.Count > 0 ? Model.Ratings.Average(x => x.Rating) : 0;
 }
 <!-- Start Bradcaump area -->
-<div class="ht__bradcaump__area" style="background: rgba(0, 0, 0, 0) url(images/bg/2.jpg) no-repeat scroll center center / cover ;">
+<div class="ht__bradcaump__area" style="background: rgba(0, 0, 0, 0) url(images/bg/2.jpg) no-repeat scroll center center">
     <div class="ht__bradcaump__wrap">
         <div class="container">
             <div class="row">
@@ -33,15 +33,14 @@
                     <ul class="nav product__small__images" role="tablist">
                         <li role="presentation" class="pot-small-img">
                             <a href="#img-tab" role="tab" data-bs-toggle="tab">
-                                <img  width="360px"src="~/imgs/products/@Model.CoverImage" alt="small-image">
+                                <img  width="360px" src="~/imgs/products/@Model.CoverImage" alt="small-image">
                             </a>
                         </li>
-                        @foreach(var item in Model.Images.Select(x=>x.FileUrl?? []))
+                        @foreach(var item in Model.Images.Select(x=>x.FileUrl)?? [])
                         {
-                            
                         <li role="presentation" class="pot-small-img">
                             <a href="#img-tab" role="tab" data-bs-toggle="tab">
-                                <img width="360px"src="~/imgs/products/@item" alt="small-image">
+                                    <img style="width:2000px" src="~/imgs/products/@item" alt="small-image">
                             </a>
                         </li> 
                         }
@@ -62,7 +61,7 @@
                     <div class="pro__detl__title">
                         <h2>@Model.Name</h2>
                     </div>
-                    if(User.Identity.IsAuthenticated)
+                    @if(User.Identity.IsAuthenticated)
                     {
                         <form asp-action="Rate" method="get">
                             <input  name="productId" value="@Model.Id" type="hidden"/>
@@ -73,7 +72,7 @@
 
                     <div class="pro__dtl__rating">
                         <ul class="pro__rating">
-                            @for(int i=0,i<Math.Ceilling(rating);i++)
+                            @for(int i=0; i<Math.Ceiling(rating);i++)
                             {
                             <li><span class="ti-star"></span></li>
                                 
@@ -83,16 +82,16 @@
                         <span class="rat__qun">(Based on @Model.Ratings.Count Ratings)</span>
                     </div>
                     <ul class="pro__dtl__prize">
-                        if(@Model.Discount>0 )
+                        @if(@Model.Discount>0 )
                         {
                          <li class="old__prize">$@Model.SellPrice</li>
-                         <li>$(@Model.SellPrice*(100-Model.Discount)/100)</li>
+                         <li>$(@Model.SellPrice*(100-@Model.Discount)/100)</li>
 
                         }
                         else
                         {
-                         <li class="old__prize">$@Model.SellPrice</li>
-                      
+                         <li>$@Model.SellPrice</li>
+                       
                         }
                     </ul>
                     <div class="pro__details">
@@ -208,7 +207,7 @@
                     <!-- Start Single Content -->
                     <div role="tabpanel" id="reviews" class="product__tab__content">
                         <div class="review__address__inner">
-                            @foreach(var item in Model.Comment.Select(x=>x.Comment ?? []))
+                            @foreach(var item in Model?.Comments?.Select(x=>x.Comment) ?? [])
                             {
                             <!-- Start Single Review -->
                             <div class="pro__review">
@@ -243,7 +242,7 @@
                                     <div class="review__date">
                                         <span>@Model.CreatedTime</span>
                                     </div>
-                                    <p>@Model.Comment</p>
+                                    <p>@Model.Comments</p>
                                 </div>
 
 

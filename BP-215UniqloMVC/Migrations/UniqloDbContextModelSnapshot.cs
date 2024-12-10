@@ -48,7 +48,94 @@ namespace BP_215UniqloMVC.Migrations
                     b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("BP_215UniqloMVC.Models.Product", b =>
+            modelBuilder.Entity("BP_215UniqloMVC.Models.ProductComment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Comment")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ProductsId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductsId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("ProductComment");
+                });
+
+            modelBuilder.Entity("BP_215UniqloMVC.Models.ProductImage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("FileUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ProductImage");
+                });
+
+            modelBuilder.Entity("BP_215UniqloMVC.Models.ProductRating", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ProductsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Rating")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductsId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("ProductRating");
+                });
+
+            modelBuilder.Entity("BP_215UniqloMVC.Models.Products", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -96,34 +183,6 @@ namespace BP_215UniqloMVC.Migrations
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("BP_215UniqloMVC.Models.ProductImage", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreatedTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("FileUrl")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("ProductImage");
-                });
-
             modelBuilder.Entity("BP_215UniqloMVC.Models.Slider", b =>
                 {
                     b.Property<int>("Id")
@@ -156,6 +215,29 @@ namespace BP_215UniqloMVC.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Sliders");
+                });
+
+            modelBuilder.Entity("BP_215UniqloMVC.Models.Tag", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Tags");
                 });
 
             modelBuilder.Entity("BP_215UniqloMVC.Models.User", b =>
@@ -364,7 +446,59 @@ namespace BP_215UniqloMVC.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("BP_215UniqloMVC.Models.Product", b =>
+            modelBuilder.Entity("ProductsTag", b =>
+                {
+                    b.Property<int>("ProductsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TagsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ProductsId", "TagsId");
+
+                    b.HasIndex("TagsId");
+
+                    b.ToTable("ProductsTag");
+                });
+
+            modelBuilder.Entity("BP_215UniqloMVC.Models.ProductComment", b =>
+                {
+                    b.HasOne("BP_215UniqloMVC.Models.Products", null)
+                        .WithMany("Comments")
+                        .HasForeignKey("ProductsId");
+
+                    b.HasOne("BP_215UniqloMVC.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("BP_215UniqloMVC.Models.ProductImage", b =>
+                {
+                    b.HasOne("BP_215UniqloMVC.Models.Products", "Product")
+                        .WithMany("Images")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("BP_215UniqloMVC.Models.ProductRating", b =>
+                {
+                    b.HasOne("BP_215UniqloMVC.Models.Products", null)
+                        .WithMany("Ratings")
+                        .HasForeignKey("ProductsId");
+
+                    b.HasOne("BP_215UniqloMVC.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("BP_215UniqloMVC.Models.Products", b =>
                 {
                     b.HasOne("BP_215UniqloMVC.Models.Category", "Category")
                         .WithMany("Products")
@@ -373,17 +507,6 @@ namespace BP_215UniqloMVC.Migrations
                         .IsRequired();
 
                     b.Navigation("Category");
-                });
-
-            modelBuilder.Entity("BP_215UniqloMVC.Models.ProductImage", b =>
-                {
-                    b.HasOne("BP_215UniqloMVC.Models.Product", "Product")
-                        .WithMany("Images")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -437,14 +560,33 @@ namespace BP_215UniqloMVC.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("ProductsTag", b =>
+                {
+                    b.HasOne("BP_215UniqloMVC.Models.Products", null)
+                        .WithMany()
+                        .HasForeignKey("ProductsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BP_215UniqloMVC.Models.Tag", null)
+                        .WithMany()
+                        .HasForeignKey("TagsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("BP_215UniqloMVC.Models.Category", b =>
                 {
                     b.Navigation("Products");
                 });
 
-            modelBuilder.Entity("BP_215UniqloMVC.Models.Product", b =>
+            modelBuilder.Entity("BP_215UniqloMVC.Models.Products", b =>
                 {
+                    b.Navigation("Comments");
+
                     b.Navigation("Images");
+
+                    b.Navigation("Ratings");
                 });
 #pragma warning restore 612, 618
         }

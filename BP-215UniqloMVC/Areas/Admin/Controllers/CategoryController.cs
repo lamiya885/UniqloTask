@@ -1,4 +1,5 @@
 ﻿using BP_215UniqloMVC.DataAccess;
+using BP_215UniqloMVC.Helpers;
 using BP_215UniqloMVC.Models;
 using BP_215UniqloMVC.ViewModels.Category;
 using Microsoft.AspNetCore.Authorization;
@@ -8,7 +9,8 @@ using Microsoft.EntityFrameworkCore;
 namespace BP_215UniqloMVC.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize]
+    [Authorize(Roles = RoleConstants.Product)]
+
 
     public class CategoryController(UniqloDbContext _context) : Controller
     {

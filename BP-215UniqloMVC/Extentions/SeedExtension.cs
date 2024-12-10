@@ -27,11 +27,11 @@ namespace BP_215UniqloMVC.Extentions
                     User user = new User
                    { 
                     FullName = "Admin",
-                    UserName = "Admin",
+                    UserName = "admin",
                     Email = "Admin@gmail.com",
                     ProfileImageUrl = "photo.jpg"
                 };
-                    userManager.CreateAsync(user, "123").Wait();
+                    userManager.CreateAsync(user, "admin253admin").Wait();
                     userManager.AddToRoleAsync(user,nameof(Roles.Admin)).Wait();
 
                 }

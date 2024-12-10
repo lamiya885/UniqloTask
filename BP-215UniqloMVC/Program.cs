@@ -3,7 +3,6 @@ using BP_215UniqloMVC.Extentions;
 using BP_215UniqloMVC.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace BP_215UniqloMVC
 {
