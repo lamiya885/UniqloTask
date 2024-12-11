@@ -2,6 +2,8 @@ using BP_215UniqloMVC.DataAccess;
 using BP_215UniqloMVC.Extentions;
 using BP_215UniqloMVC.Helpers;
 using BP_215UniqloMVC.Models;
+using BP_215UniqloMVC.Services.Abstract;
+using BP_215UniqloMVC.Services.Implements;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -30,14 +32,16 @@ namespace BP_215UniqloMVC
                 opt.Lockout.MaxFailedAccessAttempts = 3;
                 opt.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(1);
             }).AddDefaultTokenProviders().AddEntityFrameworkStores<UniqloDbContext>();
+            builder.Services.AddScoped<IEmailService, EmailService>();
+            var opt = new SmtpOptions();
+            builder.Services.Configure<SmtpOptions>( builder.Configuration.GetSection(SmtpOptions.Name));
+            builder.Configuration.GetSection(SmtpOptions.Name).Get<SmtpOptions>();
             builder.Services.ConfigureApplicationCookie(x =>
             {
+                x.LoginPath = "/login";
                 x.AccessDeniedPath = "/Home/AccessDenied";
-                x.LoginPath = "";
             });
 
-            SmtpOptions opt = new SmtpOptions();
-            builder.Services.Configure<SmtpOptions>(builder.Configuration.GetSection("Smtp"));
 
             var app = builder.Build();
 

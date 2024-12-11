@@ -3,6 +3,7 @@ using System.Net.Mail;
 using BP_215UniqloMVC.Enums;
 using BP_215UniqloMVC.Helpers;
 using BP_215UniqloMVC.Models;
+using BP_215UniqloMVC.Services.Abstract;
 using BP_215UniqloMVC.ViewModels.Auths;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -11,7 +12,7 @@ using Microsoft.Extensions.Options;
 
 namespace BP_215UniqloMVC.Controllers
 {
-    public class AccountController(UserManager<User> _userManager, SignInManager<User> _signInManager,IOptions<SmtpOptions> opts) : Controller
+    public class AccountController(UserManager<User> _userManager, SignInManager<User> _signInManager,IOptions<SmtpOptions> opts,IEmailService _service) : Controller
     {
         readonly SmtpOptions _smtpOpt= opts.Value;
         bool isAuthenticated => User.Identity?.IsAuthenticated ?? false;
@@ -124,8 +125,8 @@ namespace BP_215UniqloMVC.Controllers
             smtp.Host = _smtpOpt.Host;
             smtp.Port = _smtpOpt.Port;
             smtp.EnableSsl = true;
-            smtp.Credentials = new NetworkCredential(_smtpOpt.Username,_smtpOpt.Password);
-            MailAddress from = new MailAddress(_smtpOpt.Username,"Yaya support");
+            smtp.Credentials = new NetworkCredential(_smtpOpt.Username, _smtpOpt.Password);
+            MailAddress from = new MailAddress(_smtpOpt.Username, "Yaya support");
             MailAddress to = new("lamiyahasanza@gmail.com");
             MailMessage msg = new MailMessage(from, to);
             msg.Subject = "Security alert!";
@@ -134,7 +135,9 @@ namespace BP_215UniqloMVC.Controllers
 
             smtp.Send(msg);
             return Ok("Alindi");
+
         }
+
     }
 }
 
