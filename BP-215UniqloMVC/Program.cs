@@ -34,7 +34,8 @@ namespace BP_215UniqloMVC
             }).AddDefaultTokenProviders().AddEntityFrameworkStores<UniqloDbContext>();
             builder.Services.AddScoped<IEmailService, EmailService>();
             var opt = new SmtpOptions();
-            builder.Services.Configure<SmtpOptions>( builder.Configuration.GetSection(SmtpOptions.Name));
+            //builder.Configuration.GetSection(SmtpOptions.Name).Bind(opt);
+            builder.Services.Configure<SmtpOptions>(builder.Configuration.GetSection(SmtpOptions.Name));
             builder.Configuration.GetSection(SmtpOptions.Name).Get<SmtpOptions>();
             builder.Services.ConfigureApplicationCookie(x =>
             {
@@ -42,11 +43,13 @@ namespace BP_215UniqloMVC
                 x.AccessDeniedPath = "/Home/AccessDenied";
             });
 
+            builder.Services.AddSession();
 
             var app = builder.Build();
 
             app.UseStaticFiles();
             app.UseUserSeed();
+            app.UseSession();
 
             app.MapControllerRoute(
                 name: "register",

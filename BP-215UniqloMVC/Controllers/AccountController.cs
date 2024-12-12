@@ -1,5 +1,6 @@
 ﻿using System.Net;
 using System.Net.Mail;
+using System.Text;
 using BP_215UniqloMVC.Enums;
 using BP_215UniqloMVC.Helpers;
 using BP_215UniqloMVC.Models;
@@ -57,10 +58,12 @@ namespace BP_215UniqloMVC.Controllers
                 {
                     ModelState.AddModelError("", error.Description);
                 }
-                return View();
             }
+                string token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+            await   _service.SendEmailConfirmation(user.Email,user.UserName, token);
+                return Content("Email sent");
 
-            return View();
+          
         }
         public async Task<IActionResult> Login()
         {
@@ -94,7 +97,7 @@ namespace BP_215UniqloMVC.Controllers
             if (!result.Succeeded)
             {
                 if (result.IsNotAllowed)
-                    ModelState.AddModelError("", "Usernae or Password is wrong");
+                    ModelState.AddModelError("", "You must confirm your account");
                 if (result.IsLockedOut)
                     ModelState.AddModelError("", "Wait until" + user.LockoutEnd!.Value.ToString("yyyy-MM-dd HH:mm:ss"));
 
@@ -121,21 +124,40 @@ namespace BP_215UniqloMVC.Controllers
 
         public async Task<IActionResult> Test()
         {
-            SmtpClient smtp = new();
-            smtp.Host = _smtpOpt.Host;
-            smtp.Port = _smtpOpt.Port;
-            smtp.EnableSsl = true;
-            smtp.Credentials = new NetworkCredential(_smtpOpt.Username, _smtpOpt.Password);
-            MailAddress from = new MailAddress(_smtpOpt.Username, "Yaya support");
-            MailAddress to = new("lamiyahasanza@gmail.com");
-            MailMessage msg = new MailMessage(from, to);
-            msg.Subject = "Security alert!";
-            msg.Body = "<p>Change your password immediatly! From this <a>link</a></p>";
-            msg.IsBodyHtml = true;
+            //SmtpClient smtp = new();
+            //smtp.Host = _smtpOpt.Host;
+            //smtp.Port = _smtpOpt.Port;
+            //smtp.EnableSsl = true;
+            //smtp.Credentials = new NetworkCredential(_smtpOpt.Sender, _smtpOpt.Password);
+            //MailAddress from = new MailAddress(_smtpOpt.Sender, "Yaya support");
+            //MailAddress to = new("lamiyahasanza@gmail.com");
+            //MailMessage msg = new MailMessage(from, to);
+            //msg.Subject = "Security alert!";
+            //msg.Body = "<p>Change your password immediatly! From this <a>link</a></p>";
+            //msg.IsBodyHtml = true;
 
-            smtp.Send(msg);
-            return Ok("Alindi");
+            //smtp.Send(msg);
+            //return Ok("Alindi");
 
+            return Ok();
+
+        }
+        public async Task<IActionResult> VerifyEmail(string token ,string user)
+        {
+            var entity = await _userManager.FindByNameAsync(user);
+            if (entity is null) return BadRequest();
+           var result= await _userManager.ConfirmEmailAsync(entity, token);
+            if(!result.Succeeded)
+            {
+                StringBuilder sb= new StringBuilder();
+                foreach(var item in result.Errors )
+                {
+                    sb.AppendLine(item.ToString());
+                }
+                return Content(sb.ToString());
+            }
+            await _signInManager.SignInAsync(entity, true);
+            return RedirectToAction("Index","Home");
         }
 
     }
