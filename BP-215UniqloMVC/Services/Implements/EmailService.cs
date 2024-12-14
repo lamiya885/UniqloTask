@@ -50,10 +50,12 @@ namespace BP_215UniqloMVC.Services.Implements
             string url= Context.Request.Scheme + "://" + Context.Request.Host + "/Account/VerifyEmail?token=" + token+"&user";
            EmailTemplates.VerifyEmail.Replace("__$name", name).Replace("__$link",url);
            msg.Body = EmailTemplates.VerifyEmail;
-            //*  Context.Request.Url = Context.Request.Url.Scheme + "://" + Context.Request.Url.Authority + Context.Reque*/st.ApplicationPath.TrimEnd('/') + "/";
-           smtp.Send(msg);
+            //Context.Request.Url = Context.Request.Url.Scheme + "://" + Context.Request.Url.Authority + Context.Request.ApplicationPath.TrimEnd('/') + "/";
+            smtp.Send(msg);
            return Task.CompletedTask;
         }
 
     }
 }
+
+
