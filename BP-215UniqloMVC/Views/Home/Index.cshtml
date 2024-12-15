@@ -3,6 +3,9 @@
     ViewData["Title"] = "Ana Səhifə";
     Layout = "_Layout";
 }
+@section styles{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+}
         <!-- Start Slider Area -->
         <div class="slider__container slider--four">
             <div class="slider__activation__wrap owl-carousel owl-theme">
@@ -149,9 +152,7 @@
                                                 </div>
                                                 <div class="popular__product__hover__info">
                                                     <ul class="product__action">
-                                                        <li><a title="Add To Wishlist" href="wishlist.html"><span class="ti-heart"></span></a></li>
-                                                        <li><a data-bs-toggle="modal" data-bs-target="#productModal" title="Quick View" class="quick-view modal-view detail-link" href="#"><span class="ti-plus"></span></a></li>
-                                                        <li><a title="Add To Cart" href="cart.html"><span class="ti-shopping-cart"></span></a></li>
+                                                        <li prod-id="@item.Id" style="color-rendering:red;cursor:painter;" class=".add-cart"><span class="ti-shopping-cart"></span></li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -159,9 +160,18 @@
                                             <h2><a asp-action="Details" asp-controller="Product" asp-route-id="@item.Id">@item.Name</a></h2>
                                               @if(item.IsInStock)
                                               {
-                                                  <del>$@item.Price</del>
-                                                <span class="popular__pro__prize">$@(item.Price-item.Price * item.Discount/100)</span>
-                                              }
+                                                  if(item.Discount>0)
+                                                {
+                                                <del>$@item.Price</del>
+                                               <span class="popular__pro__prize">$@(item.Price-item.Price * item.Discount/100)</span>  
+
+                                                }
+                                                else
+                                                {
+                                                    <span class="popular__pro__prize">$@item.Price</span>
+                                                    
+                                                }
+                                            }
                                               else
                                               {
                                                 <span class="popular__pro__prize">Stok yenilenecek </span>
@@ -180,5 +190,37 @@
                 </div>
             </div>
             </div>
+            @section scripts{
+                <script>
+                    $('.add-cart').click(function()){
+    fetch('/Product/AddBasket/'i+$(this).attr('prod-id')).then(x=>{
+        if(x.ok)
+        {
+
+          Command:toastr["success"]("Sebete elave edilir")
+            toaster.options = {
+
+                        toastr.options = {
+                            "closeButton": false,
+                            "debug": false,
+                            "newestOnTop": false,
+                            "progressBar": false,
+                            "positionClass": "toast-top-right",
+                            "preventDuplicates": false,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "5000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+            }
+        }
+    });
+                    }
+                </script>
+            }
       
 

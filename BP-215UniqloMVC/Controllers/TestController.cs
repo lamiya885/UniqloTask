@@ -14,5 +14,6 @@ namespace BP_215UniqloMVC.Controllers
            return Content(HttpContext.Session.GetString(key));
           
         }
+     
     }
 }

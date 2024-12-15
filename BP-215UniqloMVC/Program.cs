@@ -1,3 +1,4 @@
+using System.Configuration;
 using BP_215UniqloMVC.DataAccess;
 using BP_215UniqloMVC.Extentions;
 using BP_215UniqloMVC.Helpers;
@@ -24,19 +25,26 @@ namespace BP_215UniqloMVC
             {
                 opt.User.AllowedUserNameCharacters =
                 "qwertyuiopasdfghjklzxcvbnm0123456789._";
+                opt.User.RequireUniqueEmail = true;
                 opt.Password.RequiredLength = 3;
                 opt.Password.RequireNonAlphanumeric = false;
                 opt.Password.RequireDigit = false;
                 opt.Password.RequireLowercase = false;
                 opt.Password.RequireUppercase = false;
+                opt.Lockout.AllowedForNewUsers = true;
                 opt.Lockout.MaxFailedAccessAttempts = 3;
                 opt.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(1);
             }).AddDefaultTokenProviders().AddEntityFrameworkStores<UniqloDbContext>();
+
+
+           
+
             builder.Services.AddScoped<IEmailService, EmailService>();
             var opt = new SmtpOptions();
-            //builder.Configuration.GetSection(SmtpOptions.Name).Bind(opt);
+            builder.Configuration.GetSection(SmtpOptions.Name).Bind(opt);
             builder.Services.Configure<SmtpOptions>(builder.Configuration.GetSection(SmtpOptions.Name));
             builder.Configuration.GetSection(SmtpOptions.Name).Get<SmtpOptions>();
+            builder.Services.Configure<DataProtectionTokenProviderOptions>(optionns => optionns.TokenLifespan = TimeSpan.FromHours(1));
             builder.Services.ConfigureApplicationCookie(x =>
             {
                 x.LoginPath = "/login";

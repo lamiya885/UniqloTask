@@ -14,7 +14,7 @@ namespace BP_215UniqloMVC.DataAccess
         public  DbSet<ProductImage> ProductImage { get; set; }
         public DbSet<Tag> Tags { get; set; }
         public DbSet<ProductRating> ProductRatings { get; set; }
-        public DbSet<ProductRating> ProductComment { get; set; }
+        public DbSet<ProductComment> ProductComments { get; set; }
 
         public UniqloDbContext(DbContextOptions opt):base(opt) { }
 

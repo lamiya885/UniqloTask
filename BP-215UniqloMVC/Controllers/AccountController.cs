@@ -8,14 +8,17 @@ using BP_215UniqloMVC.Services.Abstract;
 using BP_215UniqloMVC.ViewModels.Auths;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 
 namespace BP_215UniqloMVC.Controllers
 {
-    public class AccountController(UserManager<User> _userManager, SignInManager<User> _signInManager,IOptions<SmtpOptions> opts,IEmailService _service) : Controller
+    public class AccountController(UserManager<User> _userManager, SignInManager<User> _signInManager,IOptions<SmtpOptions> opts,IEmailService _service,IEmailSender _emailSender) : Controller
     {
         readonly SmtpOptions _smtpOpt= opts.Value;
+        readonly IEmailSender emailSender = _emailSender;
+
         bool isAuthenticated => User.Identity?.IsAuthenticated ?? false;
         public IActionResult Register()
         {
@@ -38,6 +41,7 @@ namespace BP_215UniqloMVC.Controllers
                 UserName = vm.UserName,
                 ProfileImageUrl = "photo.jpg",
             };
+
 
             var result = await _userManager.CreateAsync(user, vm.Password);
 
@@ -160,6 +164,82 @@ namespace BP_215UniqloMVC.Controllers
             return RedirectToAction("Index","Home");
         }
 
+        public IActionResult ForgotPasword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ForgotPassword(ForgotPasswordVM vm)
+        {
+            if(vm is null) return NotFound();
+            
+           
+		var user = await _userManager.FindByEmailAsync(vm.Email);
+		if (user == null || !(await _userManager.IsEmailConfirmedAsync(user)))
+	       return View("ForgotPasswordConfirmation");
+		
+        SmtpClient smtp = new SmtpClient();
+            smtp.Host=_smtpOpt.Host;
+            smtp.Port = _smtpOpt.Port;
+            smtp.Credentials = new NetworkCredential(_smtpOpt.Sender, _smtpOpt.Password);
+            MailAddress from = new MailAddress(_smtpOpt.Sender, "Uniqlo");
+            MailAddress to = new(vm.Email);
+            smtp.EnableSsl = true;
+
+
+            Random random = new Random();
+            string randomCode = random.Next(1000,100000).ToString();
+
+		var code = await _userManager.GeneratePasswordResetTokenAsync(user);
+		var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = randomCode }, protocol: HttpContext.Request.Scheme);
+            MailMessage message = new MailMessage();
+            message.Subject = "Reset Password";
+            message.Body = "Please reset your password by clicking here: <a href=\"" + callbackUrl + "\">link</a>";
+            message.IsBodyHtml = true;
+           smtp.Send(message);
+          
+            return RedirectToAction(nameof(ForgotPasswordConfirmation));
+          
+        }
+        public IActionResult ForgotPasswordConfirmation()
+        {
+            return View();
+        }
+
+        public IActionResult ResetPassword()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> ResetPassword(ResetPasswordVM vm)
+        {
+          
+            if (!ModelState.IsValid)  return View(vm);
+             var user = await _userManager.FindByEmailAsync(vm.Email);
+            if (user == null)
+               return RedirectToAction(nameof(AccountController.ResetPasswordConfirmation), "Account");
+            
+            var result = await _userManager.ResetPasswordAsync(user, vm.Code, vm.Password);
+            if (!result.Succeeded)
+            {
+                foreach (var err in result.Errors)
+                {
+                    ModelState.AddModelError(string.Empty, err.Code + " " + err.Description);
+                }
+                return View();
+            }
+            return RedirectToAction(nameof(AccountController.ResetPasswordConfirmation), "Account");
+
+          
+        }
+    
+        public IActionResult ResetPasswordConfirmation()
+        {
+            return View();
+
+        }
     }
+
 }
 

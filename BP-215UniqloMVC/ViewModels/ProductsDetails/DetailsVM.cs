@@ -8,6 +8,8 @@ namespace BP_215UniqloMVC.ViewModels.ProductsDetails
         public string ImageUrl { get; set; }
         public decimal Price { get; set; }
         public int Discount { get; set; }
+        public  string CoverImageUrl { get; set; }
+
         public ICollection<ProductImage>? Images { get; set; }
         
     }

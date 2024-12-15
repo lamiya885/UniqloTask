@@ -5,6 +5,9 @@ namespace BP_215UniqloMVC.Models
     public class ProductComment
     {
         public int Id { get; set; }
+        public string FullName { get; set; }
+        [EmailAddress]
+        public string Email { get; set; }
         [Range(0,500)]
         public string Comment {  get; set; }
         public int? ProductId {  get; set; }

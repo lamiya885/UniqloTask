@@ -1,5 +1,7 @@
 ﻿using System.Security.Claims;
 using BP_215UniqloMVC.DataAccess;
+using BP_215UniqloMVC.Models;
+using BP_215UniqloMVC.ViewModels.Comment;
 using BP_215UniqloMVC.ViewModels.ProductsDetails;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -20,12 +22,18 @@ namespace BP_215UniqloMVC.Controllers
             var data = await _context.Products
                 .Where(x => x.Id == Id.Value && !x.IsDeleted)
                 .Include(x => x.Images).Include(x => x.Ratings).Include(x=>x.Comments).FirstOrDefaultAsync();
-            if (data is null) return NotFound();
-            /*DetailsVM vm = new();
-            vm.Discount = data.Discount;
-            vm.Price=data.SellPrice;
-            vm.Images = data.Images;
-            vm.ProductName=data.Name;*/
+            if (data is null)
+            {
+                DetailsVM vm = new()
+                {
+                    Discount = data.Discount,
+                    Price = data.SellPrice,
+                    Images = data.Images,
+                    ProductName = data.Name,
+                    CoverImageUrl=data.CoverImage,
+
+                };
+            }
             ViewBag.Rating = 5;
             if (User.Identity?.IsAuthenticated ?? false)
             {
@@ -55,24 +63,35 @@ namespace BP_215UniqloMVC.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Details), new { Id = productId });
         }
-        //public async Task<IActionResult> Comment(int productId, string Comment)
-        //{
-        //    string userId = User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
-        //    var data = await _context.ProductComment.Where(x => x.UserId == userId && x.ProductId == productId).FirstOrDefaultAsync();
-        //    if (data is null)
-        //    {
-        //        await _context.ProductComment.AddAsync(new Models.ProductComment
-        //        {
-        //            UserId = userId,
-        //            Comment = Comment,
-        //            ProductId = productId
-        //        });
-        //    }
-        //    else
-        //    {
-        //        data.comment = Comment;
-        //    }
-        //    return View();
-        //}
+        public async Task<IActionResult> CommentCreate(int productId, string Comment,CommentCreateVM vm)
+        {
+            string userId = User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
+            var data = await _context.ProductComments.Where(x => x.UserId == userId && x.ProductId == productId).FirstOrDefaultAsync();
+
+              ProductComment productComment = new ProductComment()
+                {
+                    FullName = vm.FullName,
+                    Email = vm.Email,
+                    UserId = userId,
+                    Comment = Comment,
+                    ProductId = productId
+                };
+            
+            
+           await _context.ProductComments.AddAsync(productComment);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Details));
+        }
+        public async Task<IActionResult> CommentRemove(int? Id)
+        {
+            if (!Id.HasValue) return BadRequest();
+            var data = await _context.ProductComments.FindAsync(Id);
+            if (data is null) return NotFound();
+             _context.Remove(data);
+
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Details));
+
+        }
     }
 }
