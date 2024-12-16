@@ -60,6 +60,14 @@ namespace BP_215UniqloMVC.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FullName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int?>("ProductId")
                         .HasColumnType("int");
 
@@ -75,7 +83,7 @@ namespace BP_215UniqloMVC.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("ProductComment");
+                    b.ToTable("ProductComments");
                 });
 
             modelBuilder.Entity("BP_215UniqloMVC.Models.ProductImage", b =>
@@ -132,7 +140,7 @@ namespace BP_215UniqloMVC.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("ProductRating");
+                    b.ToTable("ProductRatings");
                 });
 
             modelBuilder.Entity("BP_215UniqloMVC.Models.Products", b =>
