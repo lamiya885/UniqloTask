@@ -3,8 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\ll novbe\\Desktop\\UniqloTask\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\ll novbe\\Desktop\\UniqloTask\\BP-215UniqloMVC\\Migrations\\20241216154822_l.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BP-215UniqloMVC\\Migrations\\20241216154822_l.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{0330EEE8-4377-4E04-BC5A-7E5B2C07818C}|BP-215UniqloMVC\\BP-215UniqloMVC.csproj|c:\\users\\ll novbe\\desktop\\uniqlotask\\bp-215uniqlomvc\\migrations\\20241216154822_l.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0330EEE8-4377-4E04-BC5A-7E5B2C07818C}|BP-215UniqloMVC\\BP-215UniqloMVC.csproj|solutionrelative:bp-215uniqlomvc\\migrations\\20241216154822_l.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0330EEE8-4377-4E04-BC5A-7E5B2C07818C}|BP-215UniqloMVC\\BP-215UniqloMVC.csproj|c:\\users\\ll novbe\\desktop\\uniqlotask\\bp-215uniqlomvc\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -67,8 +67,7 @@
               "RelativeToolTip": "BP-215UniqloMVC\\Views\\Home\\Index.cshtml",
               "ViewState": "AgIAAKgAAAAAAAAAAAAAALQAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-12-16T15:29:50.138Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-16T15:29:50.138Z"
             },
             {
               "$type": "Document",
@@ -80,8 +79,7 @@
               "RelativeToolTip": "BP-215UniqloMVC\\Views\\Shared\\Components\\Header\\Default.cshtml",
               "ViewState": "AgIAAE4AAAAAAAAAAAAAAEwAAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-12-16T15:19:53.033Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-16T15:19:53.033Z"
             },
             {
               "$type": "Document",
@@ -93,8 +91,7 @@
               "RelativeToolTip": "BP-215UniqloMVC\\Views\\Shared\\_Layout.cshtml",
               "ViewState": "AgIAAH4AAAAAAAAAAAAAACUAAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-12-16T15:16:42.58Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-16T15:16:42.58Z"
             },
             {
               "$type": "Document",
