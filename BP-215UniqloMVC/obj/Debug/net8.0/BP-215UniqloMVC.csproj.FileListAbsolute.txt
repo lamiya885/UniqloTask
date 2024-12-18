@@ -269,7 +269,6 @@ C:\Users\ll novbe\Desktop\UniqloTask\BP-215UniqloMVC\obj\Debug\net8.0\BP-215Uniq
 C:\Users\ll novbe\Desktop\UniqloTask\BP-215UniqloMVC\obj\Debug\net8.0\BP-215UniqloMVC.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\ll novbe\Desktop\UniqloTask\BP-215UniqloMVC\obj\Debug\net8.0\BP-215UniqloMVC.RazorAssemblyInfo.cache
 C:\Users\ll novbe\Desktop\UniqloTask\BP-215UniqloMVC\obj\Debug\net8.0\BP-215UniqloMVC.RazorAssemblyInfo.cs
-C:\Users\ll novbe\Desktop\UniqloTask\BP-215UniqloMVC\obj\Debug\net8.0\BP-215UniqloMVC.sourcelink.json
 C:\Users\ll novbe\Desktop\UniqloTask\BP-215UniqloMVC\obj\Debug\net8.0\BP-215UniqloMVC.dll
 C:\Users\ll novbe\Desktop\UniqloTask\BP-215UniqloMVC\obj\Debug\net8.0\refint\BP-215UniqloMVC.dll
 C:\Users\ll novbe\Desktop\UniqloTask\BP-215UniqloMVC\obj\Debug\net8.0\BP-215UniqloMVC.pdb

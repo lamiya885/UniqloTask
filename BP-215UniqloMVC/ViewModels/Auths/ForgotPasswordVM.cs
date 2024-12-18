@@ -4,8 +4,8 @@ namespace BP_215UniqloMVC.ViewModels.Auths
 {
     public class ForgotPasswordVM
     {
-        [Required]
-        [EmailAddress]
-        public string Email { get; set; }
+
+        [Required, EmailAddress]
+        public string Email { get; set; } = null!;
     }
 }

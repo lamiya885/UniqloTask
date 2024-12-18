@@ -3,28 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\ll novbe\\Desktop\\UniqloTask\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\ll novbe\\Desktop\\UniqloTask\\BP-215UniqloMVC\\Migrations\\20241216154822_l.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BP-215UniqloMVC\\Migrations\\20241216154822_l.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{0330EEE8-4377-4E04-BC5A-7E5B2C07818C}|BP-215UniqloMVC\\BP-215UniqloMVC.csproj|c:\\users\\ll novbe\\desktop\\uniqlotask\\bp-215uniqlomvc\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0330EEE8-4377-4E04-BC5A-7E5B2C07818C}|BP-215UniqloMVC\\BP-215UniqloMVC.csproj|solutionrelative:bp-215uniqlomvc\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0330EEE8-4377-4E04-BC5A-7E5B2C07818C}|BP-215UniqloMVC\\BP-215UniqloMVC.csproj|c:\\users\\ll novbe\\desktop\\uniqlotask\\bp-215uniqlomvc\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{0330EEE8-4377-4E04-BC5A-7E5B2C07818C}|BP-215UniqloMVC\\BP-215UniqloMVC.csproj|solutionrelative:bp-215uniqlomvc\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{0330EEE8-4377-4E04-BC5A-7E5B2C07818C}|BP-215UniqloMVC\\BP-215UniqloMVC.csproj|c:\\users\\ll novbe\\desktop\\uniqlotask\\bp-215uniqlomvc\\views\\product\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{0330EEE8-4377-4E04-BC5A-7E5B2C07818C}|BP-215UniqloMVC\\BP-215UniqloMVC.csproj|solutionrelative:bp-215uniqlomvc\\views\\product\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0330EEE8-4377-4E04-BC5A-7E5B2C07818C}|BP-215UniqloMVC\\BP-215UniqloMVC.csproj|c:\\users\\ll novbe\\desktop\\uniqlotask\\bp-215uniqlomvc\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{0330EEE8-4377-4E04-BC5A-7E5B2C07818C}|BP-215UniqloMVC\\BP-215UniqloMVC.csproj|solutionrelative:bp-215uniqlomvc\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0330EEE8-4377-4E04-BC5A-7E5B2C07818C}|BP-215UniqloMVC\\BP-215UniqloMVC.csproj|c:\\users\\ll novbe\\desktop\\uniqlotask\\bp-215uniqlomvc\\views\\shared\\components\\header\\default.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{0330EEE8-4377-4E04-BC5A-7E5B2C07818C}|BP-215UniqloMVC\\BP-215UniqloMVC.csproj|solutionrelative:bp-215uniqlomvc\\views\\shared\\components\\header\\default.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0330EEE8-4377-4E04-BC5A-7E5B2C07818C}|BP-215UniqloMVC\\BP-215UniqloMVC.csproj|c:\\users\\ll novbe\\desktop\\uniqlotask\\bp-215uniqlomvc\\controllers\\basketcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0330EEE8-4377-4E04-BC5A-7E5B2C07818C}|BP-215UniqloMVC\\BP-215UniqloMVC.csproj|solutionrelative:bp-215uniqlomvc\\controllers\\basketcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0330EEE8-4377-4E04-BC5A-7E5B2C07818C}|BP-215UniqloMVC\\BP-215UniqloMVC.csproj|c:\\users\\ll novbe\\desktop\\uniqlotask\\bp-215uniqlomvc\\viewcomponents\\headerviewcomponent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0330EEE8-4377-4E04-BC5A-7E5B2C07818C}|BP-215UniqloMVC\\BP-215UniqloMVC.csproj|solutionrelative:bp-215uniqlomvc\\viewcomponents\\headerviewcomponent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{0330EEE8-4377-4E04-BC5A-7E5B2C07818C}|BP-215UniqloMVC\\BP-215UniqloMVC.csproj|c:\\users\\ll novbe\\desktop\\uniqlotask\\bp-215uniqlomvc\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0330EEE8-4377-4E04-BC5A-7E5B2C07818C}|BP-215UniqloMVC\\BP-215UniqloMVC.csproj|solutionrelative:bp-215uniqlomvc\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,8 +22,47 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AccountController.cs",
+              "DocumentMoniker": "C:\\Users\\ll novbe\\Desktop\\UniqloTask\\BP-215UniqloMVC\\Controllers\\AccountController.cs",
+              "RelativeDocumentMoniker": "BP-215UniqloMVC\\Controllers\\AccountController.cs",
+              "ToolTip": "C:\\Users\\ll novbe\\Desktop\\UniqloTask\\BP-215UniqloMVC\\Controllers\\AccountController.cs*",
+              "RelativeToolTip": "BP-215UniqloMVC\\Controllers\\AccountController.cs*",
+              "ViewState": "AgIAAEwAAAAAAAAAAAAIwBEAAACBAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-18T14:20:23.357Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ProductController.cs",
+              "DocumentMoniker": "C:\\Users\\ll novbe\\Desktop\\UniqloTask\\BP-215UniqloMVC\\Controllers\\ProductController.cs",
+              "RelativeDocumentMoniker": "BP-215UniqloMVC\\Controllers\\ProductController.cs",
+              "ToolTip": "C:\\Users\\ll novbe\\Desktop\\UniqloTask\\BP-215UniqloMVC\\Controllers\\ProductController.cs",
+              "RelativeToolTip": "BP-215UniqloMVC\\Controllers\\ProductController.cs",
+              "ViewState": "AgIAACcAAAAAAAAAAAAowC0AAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-18T14:17:24.174Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "C:\\Users\\ll novbe\\Desktop\\UniqloTask\\BP-215UniqloMVC\\Views\\Product\\Details.cshtml",
+              "RelativeDocumentMoniker": "BP-215UniqloMVC\\Views\\Product\\Details.cshtml",
+              "ToolTip": "C:\\Users\\ll novbe\\Desktop\\UniqloTask\\BP-215UniqloMVC\\Views\\Product\\Details.cshtml*",
+              "RelativeToolTip": "BP-215UniqloMVC\\Views\\Product\\Details.cshtml*",
+              "ViewState": "AgIAACEAAAAAAAAAAAAAAEMAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-18T14:17:26.395Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
@@ -43,82 +70,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "20241216154822_l.cs",
-              "DocumentMoniker": "C:\\Users\\ll novbe\\Desktop\\UniqloTask\\BP-215UniqloMVC\\Migrations\\20241216154822_l.cs",
-              "RelativeDocumentMoniker": "BP-215UniqloMVC\\Migrations\\20241216154822_l.cs",
-              "ToolTip": "C:\\Users\\ll novbe\\Desktop\\UniqloTask\\BP-215UniqloMVC\\Migrations\\20241216154822_l.cs",
-              "RelativeToolTip": "BP-215UniqloMVC\\Migrations\\20241216154822_l.cs",
-              "ViewState": "AgIAAF4AAAAAAAAAAAAgwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-16T15:48:22.206Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\ll novbe\\Desktop\\UniqloTask\\BP-215UniqloMVC\\Views\\Home\\Index.cshtml",
-              "RelativeDocumentMoniker": "BP-215UniqloMVC\\Views\\Home\\Index.cshtml",
-              "ToolTip": "C:\\Users\\ll novbe\\Desktop\\UniqloTask\\BP-215UniqloMVC\\Views\\Home\\Index.cshtml",
-              "RelativeToolTip": "BP-215UniqloMVC\\Views\\Home\\Index.cshtml",
-              "ViewState": "AgIAAKgAAAAAAAAAAAAAALQAAAAqAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-12-16T15:29:50.138Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Default.cshtml",
-              "DocumentMoniker": "C:\\Users\\ll novbe\\Desktop\\UniqloTask\\BP-215UniqloMVC\\Views\\Shared\\Components\\Header\\Default.cshtml",
-              "RelativeDocumentMoniker": "BP-215UniqloMVC\\Views\\Shared\\Components\\Header\\Default.cshtml",
-              "ToolTip": "C:\\Users\\ll novbe\\Desktop\\UniqloTask\\BP-215UniqloMVC\\Views\\Shared\\Components\\Header\\Default.cshtml",
-              "RelativeToolTip": "BP-215UniqloMVC\\Views\\Shared\\Components\\Header\\Default.cshtml",
-              "ViewState": "AgIAAE4AAAAAAAAAAAAAAEwAAAAvAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-12-16T15:19:53.033Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "_Layout.cshtml",
-              "DocumentMoniker": "C:\\Users\\ll novbe\\Desktop\\UniqloTask\\BP-215UniqloMVC\\Views\\Shared\\_Layout.cshtml",
-              "RelativeDocumentMoniker": "BP-215UniqloMVC\\Views\\Shared\\_Layout.cshtml",
-              "ToolTip": "C:\\Users\\ll novbe\\Desktop\\UniqloTask\\BP-215UniqloMVC\\Views\\Shared\\_Layout.cshtml",
-              "RelativeToolTip": "BP-215UniqloMVC\\Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AgIAAH4AAAAAAAAAAAAAACUAAAAbAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-12-16T15:16:42.58Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "BasketController.cs",
-              "DocumentMoniker": "C:\\Users\\ll novbe\\Desktop\\UniqloTask\\BP-215UniqloMVC\\Controllers\\BasketController.cs",
-              "RelativeDocumentMoniker": "BP-215UniqloMVC\\Controllers\\BasketController.cs",
-              "ToolTip": "C:\\Users\\ll novbe\\Desktop\\UniqloTask\\BP-215UniqloMVC\\Controllers\\BasketController.cs",
-              "RelativeToolTip": "BP-215UniqloMVC\\Controllers\\BasketController.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABEAAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-16T15:12:57.14Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "HeaderViewComponent.cs",
-              "DocumentMoniker": "C:\\Users\\ll novbe\\Desktop\\UniqloTask\\BP-215UniqloMVC\\ViewComponents\\HeaderViewComponent.cs",
-              "RelativeDocumentMoniker": "BP-215UniqloMVC\\ViewComponents\\HeaderViewComponent.cs",
-              "ToolTip": "C:\\Users\\ll novbe\\Desktop\\UniqloTask\\BP-215UniqloMVC\\ViewComponents\\HeaderViewComponent.cs",
-              "RelativeToolTip": "BP-215UniqloMVC\\ViewComponents\\HeaderViewComponent.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAABsAAAAkAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-16T15:12:04.693Z"
             }
           ]
         }

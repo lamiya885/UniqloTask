@@ -28,7 +28,7 @@
 
     <!-- Modernizr JS -->
     <script src="~/assets/js/vendor/modernizr-3.11.2.min.js"></script>
-    @await RenderSectionAsync("styles") 
+    @await RenderSectionAsync("styles",false) 
 </head>
 <body>
     <!--[if lt IE 8]>
@@ -113,7 +113,7 @@
                         <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
                             <div class="copyright__inner">
                                 <div class="copyright">
-                                    <p>© 2022 Uniqlo. Made with <i class="ti-heart"></i> by <a target="_blank" href="https://www.hasthemes.com">HasThemes.</a></p>
+                                    <p>© 2024 Uniqlo. Made with <i class="ti-heart"></i> by <a target="_blank" href="https://www.hasthemes.com">HasThemes.</a></p>
                                 </div>
                                 <ul class="footer__menu">
                                     <li><a href="index.html">Home</a></li>
@@ -133,15 +133,15 @@
     <!-- Body main wrapper end -->
     <!-- Placed js at the end of the document so the pages load faster -->
     <!-- jquery latest version -->
-    <script src="js/vendor/jquery-3.6.0.min.js"></script>
-    <script src="js/vendor/jquery-migrate-3.3.2.min.js"></script>
-    <script src="js/vendor/jquery.waypoints.js"></script>
+    <script src="~/assets/js/vendor/jquery-3.6.0.min.js"></script>
+    <script src="~/assets/js/vendor/jquery-migrate-3.3.2.min.js"></script>
+    <script src="~/assets/js/vendor/jquery.waypoints.js"></script>
     <!-- Bootstrap Framework js -->
-    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="~/assets/js/bootstrap.bundle.min.js"></script>
     <!-- All js plugins included in this file. -->
-    <script src="js/plugins.js"></script>
+    <script src="~/assets/js/plugins.js"></script>
     <!-- Main js file that contents all jQuery plugins activation. -->
-    <script src="js/main.js"></script>
+    <script src="~/assets/js/main.js"></script>
     @await RenderSectionAsync("scripts",false)
 </body>
 

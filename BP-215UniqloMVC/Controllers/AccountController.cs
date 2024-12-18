@@ -5,6 +5,7 @@ using BP_215UniqloMVC.Enums;
 using BP_215UniqloMVC.Helpers;
 using BP_215UniqloMVC.Models;
 using BP_215UniqloMVC.Services.Abstract;
+using BP_215UniqloMVC.Services.Implements;
 using BP_215UniqloMVC.ViewModels.Auths;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -14,7 +15,7 @@ using Microsoft.Extensions.Options;
 
 namespace BP_215UniqloMVC.Controllers
 {
-    public class AccountController(UserManager<User> _userManager, SignInManager<User> _signInManager,IOptions<SmtpOptions> opts,IEmailService _service,IEmailSender _emailSender) : Controller
+    public class AccountController(UserManager<User> _userManager, SignInManager<User> _signInManager,IOptions<SmtpOptions> opts,EmailService service,IEmailSender _emailSender) : Controller
     {
         readonly SmtpOptions _smtpOpt= opts.Value;
         readonly IEmailSender emailSender = _emailSender;
@@ -64,7 +65,7 @@ namespace BP_215UniqloMVC.Controllers
                 }
             }
                 string token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-            await   _service.SendEmailConfirmation(user.Email,user.UserName, token);
+
                 return Content("Email sent");
 
           
@@ -76,7 +77,7 @@ namespace BP_215UniqloMVC.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login(LoginVM vm, string? returnUrl = null)
+        public async Task<IActionResult> Login(LoginVM vm, string? returnUrl )
         {
             if (isAuthenticated) return RedirectToAction("Index", "Home");
 
@@ -126,26 +127,8 @@ namespace BP_215UniqloMVC.Controllers
             return RedirectToAction(nameof(Login));
         }
 
-        public async Task<IActionResult> Test()
-        {
-            //SmtpClient smtp = new();
-            //smtp.Host = _smtpOpt.Host;
-            //smtp.Port = _smtpOpt.Port;
-            //smtp.EnableSsl = true;
-            //smtp.Credentials = new NetworkCredential(_smtpOpt.Sender, _smtpOpt.Password);
-            //MailAddress from = new MailAddress(_smtpOpt.Sender, "Yaya support");
-            //MailAddress to = new("lamiyahasanza@gmail.com");
-            //MailMessage msg = new MailMessage(from, to);
-            //msg.Subject = "Security alert!";
-            //msg.Body = "<p>Change your password immediatly! From this <a>link</a></p>";
-            //msg.IsBodyHtml = true;
-
-            //smtp.Send(msg);
-            //return Ok("Alindi");
-
-            return Ok();
-
-        }
+      
+  
         public async Task<IActionResult> VerifyEmail(string token ,string user)
         {
             var entity = await _userManager.FindByNameAsync(user);
@@ -173,17 +156,21 @@ namespace BP_215UniqloMVC.Controllers
         public async Task<IActionResult> ForgotPassword(ForgotPasswordVM vm)
         {
             if(vm is null) return NotFound();
+            if(!ModelState.IsValid)
+            {
+                return View();
+            }
+            
             
            
 		var user = await _userManager.FindByEmailAsync(vm.Email);
-		if (user == null || !(await _userManager.IsEmailConfirmedAsync(user)))
-	       return View("ForgotPasswordConfirmation");
+	
 		
-        SmtpClient smtp = new SmtpClient();
+           SmtpClient smtp = new SmtpClient();
             smtp.Host=_smtpOpt.Host;
             smtp.Port = _smtpOpt.Port;
-            smtp.Credentials = new NetworkCredential(_smtpOpt.Sender, _smtpOpt.Password);
-            MailAddress from = new MailAddress(_smtpOpt.Sender, "Uniqlo");
+            smtp.Credentials = new NetworkCredential(_smtpOpt.Username, _smtpOpt.Password);
+            MailAddress from = new MailAddress(_smtpOpt.Username, "Uniqlo");
             MailAddress to = new(vm.Email);
             smtp.EnableSsl = true;
 

@@ -63,7 +63,7 @@
                     </div>
                     @if(User.Identity.IsAuthenticated)
                     {
-                        <form asp-action="Rate" method="get">
+                        <form asp-action="Rating" method="get">
                             <input  name="productId" value="@Model.Id" type="hidden"/>
                             <input name="rating" value="5" type="number" min="1" max="5"/>
                             <button class="btn btn-link">Rate</button>

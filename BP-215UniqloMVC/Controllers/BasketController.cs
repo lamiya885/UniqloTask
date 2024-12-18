@@ -39,7 +39,7 @@ namespace BP_215UniqloMVC.Controllers
             {
                basketItems.Remove(item);
             }
-            Response.Cookies.Append("basket", Id.ToString());
+            Response.Cookies.Delete("item");
             return Ok();
         }
     }
