@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
 using Microsoft.Extensions.Options;
 using System.Net;
 using System.Net.Mail;
+using Uniqlo_New.Helpers;
 
 namespace BP_215UniqloMVC.Services.Implements
 {
@@ -50,10 +51,9 @@ namespace BP_215UniqloMVC.Services.Implements
             MailMessage msg = new MailMessage(_from, to);
             msg.IsBodyHtml = true;
             msg.Subject = "Confirm your email adress";
-            string url = Context.Request.Scheme + "://" + Context.Request.Host + "/Account/VerifyEmail?token=" + token + "&user";
-            EmailTemplates.VerifyEmail.Replace("__$name", name).Replace("__$link", url);
-            msg.Body = EmailTemplates.VerifyEmail;
-            //Context.Request.Url = Context.Request.Url.Scheme + "://" + Context.Request.Url.Authority + Context.Request.ApplicationPath.TrimEnd('/') + "/";
+            string url = Context.Request.Scheme + "://" + Context.Request.Host + "/Account/VerifyEmail?token=" + token + "&user="+name;
+            msg.Body = EmailTemplates.VerifyEmail.Replace("__$name", name).Replace("__$link", url);
+
             smtp.Send(msg);
             return (IActionResult)Task.CompletedTask;
         }

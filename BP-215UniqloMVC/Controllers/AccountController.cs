@@ -15,12 +15,11 @@ using Microsoft.Extensions.Options;
 
 namespace BP_215UniqloMVC.Controllers
 {
-    public class AccountController(UserManager<User> _userManager, SignInManager<User> _signInManager,IOptions<SmtpOptions> opts,EmailService service,IEmailSender _emailSender) : Controller
+    public class AccountController(UserManager<User> _userManager, SignInManager<User> _signInManager,IOptions<SmtpOptions> opts, IEmailService _service ) : Controller
     {
         readonly SmtpOptions _smtpOpt= opts.Value;
-        readonly IEmailSender emailSender = _emailSender;
-
-        bool isAuthenticated => User.Identity?.IsAuthenticated ?? false;
+        //readonly IEmailSender emailSender = _emailSender;
+       public bool isAuthenticated => User.Identity?.IsAuthenticated ?? false;
         public IActionResult Register()
         {
             if (isAuthenticated) return RedirectToAction("Index", "Home");
@@ -193,34 +192,66 @@ namespace BP_215UniqloMVC.Controllers
         {
             return View();
         }
+        //OZ YAZDIGIN
+        //public IActionResult ResetPassword()
+        //{
+        //    return View();
+        //}
+        //[HttpPost]
+        //public async Task<IActionResult> ResetPassword(ResetPasswordVM vm)
+        //{
 
-        public IActionResult ResetPassword()
+        //    if (!ModelState.IsValid)  return View(vm);
+        //     var user = await _userManager.FindByEmailAsync(vm.Email);
+        //    if (user == null)
+        //       return RedirectToAction(nameof(AccountController.ResetPasswordConfirmation), "Account");
+
+        //    var result = await _userManager.ResetPasswordAsync(user, vm.Code, vm.Password);
+        //    if (!result.Succeeded)
+        //    {
+        //        foreach (var err in result.Errors)
+        //        {
+        //            ModelState.AddModelError(string.Empty, err.Code + " " + err.Description);
+        //        }
+        //        return View();
+        //    }
+        //    return RedirectToAction(nameof(AccountController.ResetPasswordConfirmation), "Account");
+
+
+        //}
+
+        public async Task<IActionResult> ResetPassword()
         {
             return View();
         }
         [HttpPost]
         public async Task<IActionResult> ResetPassword(ResetPasswordVM vm)
         {
-          
-            if (!ModelState.IsValid)  return View(vm);
-             var user = await _userManager.FindByEmailAsync(vm.Email);
+            if (!ModelState.IsValid) { return View(); }
+            User? user = null;
+            var data = await _userManager.FindByEmailAsync(vm.Email);
+            user = data;
             if (user == null)
-               return RedirectToAction(nameof(AccountController.ResetPasswordConfirmation), "Account");
-            
-            var result = await _userManager.ResetPasswordAsync(user, vm.Code, vm.Password);
-            if (!result.Succeeded)
             {
-                foreach (var err in result.Errors)
-                {
-                    ModelState.AddModelError(string.Empty, err.Code + " " + err.Description);
-                }
+                ModelState.AddModelError("", "Istifadeci tapilmadi");
                 return View();
             }
-            return RedirectToAction(nameof(AccountController.ResetPasswordConfirmation), "Account");
+            user.EmailConfirmed = false;
+            user.UserName = data!.UserName;
+            user.Email = data!.Email;
+            await _userManager.RemovePasswordAsync(user);
+            await _userManager.AddPasswordAsync(user, vm.Password);
+            string token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+            _service.SendEmailConfirmation(user.Email, user.UserName, token);
 
-          
+
+            return RedirectToAction(nameof(CheckGmail));
         }
-    
+        public IActionResult CheckGmail()
+        {
+            return View();
+        }
+
         public IActionResult ResetPasswordConfirmation()
         {
             return View();
